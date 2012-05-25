@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectionDriver", "ElectionDriver\ElectionDriver.csproj", "{FEA95D38-A09A-4581-8E0D-01C908B0509D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C76A3BA8-98D4-40F9-8B91-CFDCC693A5F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "t_ElectionDriver", "t_ElectionDriver\t_ElectionDriver.csproj", "{F0576532-A636-473B-849C-771E84BF0B54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0576532-A636-473B-849C-771E84BF0B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0576532-A636-473B-849C-771E84BF0B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0576532-A636-473B-849C-771E84BF0B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0576532-A636-473B-849C-771E84BF0B54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA95D38-A09A-4581-8E0D-01C908B0509D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA95D38-A09A-4581-8E0D-01C908B0509D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA95D38-A09A-4581-8E0D-01C908B0509D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA95D38-A09A-4581-8E0D-01C908B0509D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F0576532-A636-473B-849C-771E84BF0B54} = {C76A3BA8-98D4-40F9-8B91-CFDCC693A5F0}
+	EndGlobalSection
+EndGlobal
