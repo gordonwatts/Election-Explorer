@@ -67,10 +67,10 @@ namespace ElectionDriver
         /// integer, and they are no gaps.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Tuple<int, int>> FullRanking()
+        public IEnumerable<CandiateRanking> FullRanking()
         {
             return from i in Enumerable.Range(0, _candidateOrdering.Count)
-                   select Tuple.Create(i, _candidateOrdering[i]);
+                   select new CandiateRanking(i, _candidateOrdering[i]);
         }
     }
 }

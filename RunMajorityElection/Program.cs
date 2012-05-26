@@ -27,24 +27,24 @@ namespace RunMajorityElection
             // The scoring system for simple majority is just who is out front.
             // The score function just returns a list of numbers for each person.
 
-            Func<IEnumerable<Tuple<int, int>>, IEnumerable<Tuple<int, int>>> pScore = candidateList =>
+            Func<IEnumerable<CandiateRanking>, IEnumerable<CandiateRanking>> pScore = candidateList =>
             {
                 var bestCandidate = (from t in candidateList
-                                    orderby t.Item2 ascending
-                                    select t.Item1).First();
+                                    orderby t.ranking ascending
+                                    select t.candidate).First();
 
-                return candidateList.Select(candidate => new Tuple<int, int>(candidate.Item1, candidate.Item2 == bestCandidate ? 1 : 0));
+                return candidateList.Select(candidate => new CandiateRanking(candidate.candidate, candidate.candidate == bestCandidate ? 1 : 0));
             };
 
             // The election is done by who has the most votes - so we just sum up all the weights, and return them
             // the final one with "ordering" of some sort. The weight will be the larest is the winner.
 
-            Func<IEnumerable<IEnumerable<Tuple<int, int>>>, IEnumerable<Tuple<int, int>>> eScore = votingRecord =>
+            Func<IEnumerable<IEnumerable<CandiateRanking>>, IEnumerable<CandiateRanking>> eScore = votingRecord =>
                 {
                     var candidateWeights = from voteScore in votingRecord
                                            from candidateWeight in voteScore
-                                           group candidateWeight.Item2 by candidateWeight.Item1 into weightsByCandidate
-                                           select Tuple.Create(weightsByCandidate.Key, weightsByCandidate.Sum());
+                                           group candidateWeight.ranking by candidateWeight.candidate into weightsByCandidate
+                                           select new CandiateRanking(weightsByCandidate.Key, weightsByCandidate.Sum());
 
                     return candidateWeights;
                 };
@@ -56,11 +56,10 @@ namespace RunMajorityElection
             // Now score the election
             var election = eScore(peopleScored);
 
-            Console.WriteLine("Election Results:");
-            foreach (var ranking in election.OrderBy(e => e.Item2))
-            {
-                Console.WriteLine("Candidate {0} had {1} votes.", ranking.Item1, ranking.Item2);
-            }
+            var winner = (from er in election
+                          orderby er.ranking descending
+                          select er).First();
+            Console.WriteLine("Winner of the election is candidate {0} with {1} votes.", winner.candidate, winner.ranking);
 
         }
     }

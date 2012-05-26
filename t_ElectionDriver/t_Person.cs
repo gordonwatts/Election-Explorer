@@ -43,6 +43,30 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
+        public void TestFullRanking()
+        {
+            var p = new Person(3, new Random());
+            var fr = p.FullRanking().ToArray();
+            CheckContiguous(fr.Select(c => c.ranking).ToArray());
+            CheckContiguous(fr.Select(c => c.candidate).ToArray());
+        }
+
+        /// <summary>
+        /// Make sure this guy is contiguous.
+        /// </summary>
+        /// <param name="rankings"></param>
+        private static void CheckContiguous(int[] rankings)
+        {
+            Assert.AreEqual(3, rankings.Length, "Array lenght incorrect");
+            var s = new SortedSet<int>(rankings);
+            Assert.AreEqual(3, s.Count, "There were some non-unique numbers in there!");
+            foreach (var i in Enumerable.Range(0, 3))
+            {
+                Assert.IsTrue(s.Contains(i), string.Format("Missing element {0}.", i));
+            }
+        }
+
+        [TestMethod]
         public void TestForFlat()
         {
             int nCandidates = 5;
