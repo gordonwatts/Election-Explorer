@@ -47,20 +47,60 @@ namespace t_ElectionDriver
         {
             var p = new Person(3, new Random());
             var fr = p.FullRanking().ToArray();
-            CheckContiguous(fr.Select(c => c.ranking).ToArray());
-            CheckContiguous(fr.Select(c => c.candidate).ToArray());
+            CheckContiguous(fr.Select(c => c.ranking).ToArray(), 3);
+            CheckContiguous(fr.Select(c => c.candidate).ToArray(), 3);
+        }
+
+        [TestMethod]
+        public void TestFullRankingWithOneGone()
+        {
+            var p = new Person(3, new Random());
+            var fr = p.FullRanking(new int[] { 1 }).ToArray();
+            Assert.AreEqual(2, fr.Length, "Incorrect number came back");
+            CheckContiguous(fr.Select(c => c.ranking).ToArray(), 2);
+            var s = new SortedSet<int>(fr.Select(c => c.candidate));
+            Assert.IsFalse(s.Contains(1), "candidate 1 should not be in there");
+
+            var fullOrdering = (from c in p.FullRanking()
+                               orderby c.ranking ascending
+                               select c).ToArray();
+            var partialOrdering = (from c in fr
+                                   orderby c.ranking ascending
+                                   select c).ToArray();
+
+            int i_p = 0;
+            for (int i_f = 0; i_f < fullOrdering.Length; i_f++)
+            {
+                if (fullOrdering[i_f].candidate == partialOrdering[i_p].candidate)
+                {
+                    i_p++;
+                }
+            }
+            Assert.AreEqual(partialOrdering.Length, i_p, "Partial list not ordered correctly");
+        }
+
+        [TestMethod]
+        public void TestFullRankingWithTwoGone()
+        {
+            var p = new Person(3, new Random());
+            var fr = p.FullRanking(new int[] { 1, 0 }).ToArray();
+            Assert.AreEqual(1, fr.Length, "Incorrect number came back");
+            CheckContiguous(fr.Select(c => c.ranking).ToArray(), 1);
+            var s = new SortedSet<int>(fr.Select(c => c.candidate));
+            Assert.IsFalse(s.Contains(1), "candidate 1 should not be in there");
+            Assert.IsFalse(s.Contains(3), "candidate 3 should not be in there");
         }
 
         /// <summary>
         /// Make sure this guy is contiguous.
         /// </summary>
         /// <param name="rankings"></param>
-        private static void CheckContiguous(int[] rankings)
+        private static void CheckContiguous(int[] rankings, int properSize)
         {
-            Assert.AreEqual(3, rankings.Length, "Array lenght incorrect");
+            Assert.AreEqual(properSize, rankings.Length, "Array lenght incorrect");
             var s = new SortedSet<int>(rankings);
-            Assert.AreEqual(3, s.Count, "There were some non-unique numbers in there!");
-            foreach (var i in Enumerable.Range(0, 3))
+            Assert.AreEqual(properSize, s.Count, "There were some non-unique numbers in there!");
+            foreach (var i in Enumerable.Range(0, properSize))
             {
                 Assert.IsTrue(s.Contains(i), string.Format("Missing element {0}.", i));
             }

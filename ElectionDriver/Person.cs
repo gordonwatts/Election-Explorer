@@ -67,10 +67,28 @@ namespace ElectionDriver
         /// integer, and they are no gaps.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CandiateRanking> FullRanking()
+        public IEnumerable<CandiateRanking> FullRanking(int[] candidatesToHoldBack = null)
         {
-            return from i in Enumerable.Range(0, _candidateOrdering.Count)
-                   select new CandiateRanking(i, _candidateOrdering[i]);
+            SortedSet<int> holdBack;
+            if (candidatesToHoldBack != null)
+            {
+                holdBack = new SortedSet<int>(candidatesToHoldBack);
+            } else {
+                holdBack = new SortedSet<int>();
+            }
+
+            var list = (from i in Enumerable.Range(0, _candidateOrdering.Count)
+                   where !holdBack.Contains(i)
+                   orderby _candidateOrdering[i] ascending
+                   select new CandiateRanking(i, _candidateOrdering[i])).ToArray();
+
+            for (int i = 0; i < list.Length; i++)
+            {
+                list[i].ranking = i;
+            }
+
+            return list;
+
         }
     }
 }
