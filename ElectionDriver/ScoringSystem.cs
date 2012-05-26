@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ElectionDriver
 {
-    class ScoringSystem
+    /// <summary>
+    /// A scoring step in an election.
+    /// </summary>
+    public class ScoringSystem
     {
     }
 }
