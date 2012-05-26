@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using ElectionDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,15 +18,95 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
+        public void TestRankingOK()
+        {
+            int count = 10;
+            var p = new Person(count, new Random());
+            var seen = new SortedSet<int>();
+            foreach (var candidate in Enumerable.Range(0, 10))
+            {
+                var r = p.Ranking(candidate);
+                Assert.IsFalse(seen.Contains(r), "Duplicate ranking");
+                seen.Add(r);
+                Console.WriteLine("Candiate {0} has rank {1}.", candidate, r);
+            }
+            Assert.AreEqual(count, seen.Count, "Size of the count");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(KeyNotFoundException))]
+        public void TestRankingOutOfBounds()
+        {
+            int count = 10;
+            var p = new Person(count, new Random());
+            var r = p.Ranking(count + 1);
+        }
+
+        [TestMethod]
         public void TestForFlat()
         {
             int nCandidates = 5;
-            var people = from i in Enumerable.Range(0, 1000)
-                         select new Person(nCandidates, new Random());
+            int nTimes = 1000;
+            var rgn = new Random();
+            var people = from i in Enumerable.Range(0, nTimes)
+                         select new Person(nCandidates, rgn);
 
-            var rankings = from p in people
-                           from candidate in Enumerable.Range(0, nCandidates)
-                           select 1;
+            // First, turn each person into a giant list of each of their rankings
+            // for all candidates. We consider all equal weight, so no need to track
+            // who voted for who.
+
+            var rankListing = from p in people
+                                from candidate in Enumerable.Range(0, nCandidates)
+                                select new 
+                                {
+                                    Candidate = candidate,
+                                    Ranking = p.Ranking(candidate)
+                                };
+
+            // Count the number of times each person was ranking at each slot
+            // in the above list, and count the number of times.
+
+            var rankingPerCandidate = (from r in rankListing
+                                      group r by r.Candidate into rankingsByCandidate
+                                      select new
+                                      {
+                                          Candidate = rankingsByCandidate.Key,
+                                          RankingCountList = (from vote in rankingsByCandidate
+                                                              group vote by vote.Ranking into candidateRanking
+                                                              select new
+                                                              {
+                                                                  Rank = candidateRanking.Key,
+                                                                  Count = candidateRanking.Count()
+                                                              }).ToDictionary(k => k.Rank, k => k.Count)
+                                      }).ToArray();
+
+            // Dump out so we can see in the test output
+
+            var avg = (double)nTimes / (double)nCandidates;
+            foreach (var c in rankingPerCandidate)
+            {
+                Console.WriteLine("Candidate {0}", c.Candidate);
+                Func<double, double> fsdt = (double a) => Math.Sqrt(Math.Pow(avg - a, 2));
+                foreach (var r in c.RankingCountList.Keys.OrderBy(k => k))
+                {
+                    Console.WriteLine("Rank {0} had {1} votes, with stdev {2}.",
+                        r,
+                        c.RankingCountList[r],
+                        fsdt(c.RankingCountList[r]));
+                }
+            }
+
+            // Make sure the sums are ok, and other things.
+            // Statistically, other things can happen... so there isn't much else we 
+            // can do for testing here, I'm afraid.
+
+            Assert.IsTrue(rankingPerCandidate.Select(k => k.RankingCountList.Sum(d => d.Value)).All(t => t == nTimes), "Some votes didn't total up correctly");
+
+            // Make sure nothing is more than 3 sigma out... shouldn't happen often, obviously.
+
+            var sigma = Math.Sqrt(avg);
+            Console.WriteLine("Average is {0} and expected sigma is {1}.", avg, sigma);
+            Assert.IsTrue(rankingPerCandidate.SelectMany(k => k.RankingCountList.Select(p => p.Value)).Select(cnt => Math.Abs(avg - cnt) / sigma).All(dev => dev < 3.0), "std deviation is not in bounds");
         }
     }
 }

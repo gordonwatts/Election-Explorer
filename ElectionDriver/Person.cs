@@ -14,7 +14,7 @@ namespace ElectionDriver
         /// <summary>
         /// Keep track of the candidate ordering. Position i contains the ranking for candidate i.
         /// </summary>
-        private int[] _candidateOrdering;
+        private IDictionary<int, int> _candidateOrdering;
 
         /// <summary>
         /// Create Person and stash the random voting preferences for the number
@@ -30,9 +30,17 @@ namespace ElectionDriver
                                Prob = generator.Next()
                            };
 
-            _candidateOrdering = (from possible in ordering
+            var ordr = from possible in ordering
                                  orderby possible.Prob
-                                 select possible.Index).ToArray();
+                                 select possible.Index;
+
+            int index = 0;
+            _candidateOrdering = new Dictionary<int, int>();
+            foreach (var co in ordr)
+            {
+                _candidateOrdering[index] = co;
+                index++;
+            }
         }
 
         /// <summary>
@@ -40,7 +48,17 @@ namespace ElectionDriver
         /// </summary>
         public int NumberOfCandidates
         {
-            get { return _candidateOrdering.Length; }
+            get { return _candidateOrdering.Count; }
+        }
+
+        /// <summary>
+        /// Returns the ranking of a particular candidate
+        /// </summary>
+        /// <param name="candidate"></param>
+        /// <returns></returns>
+        public int Ranking(int candidate)
+        {
+            return _candidateOrdering[candidate];
         }
     }
 }
