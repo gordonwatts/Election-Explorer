@@ -37,7 +37,7 @@ namespace RunMajorityElection
             };
 
             // The election is done by who has the most votes - so we just sum up all the weights, and return them
-            // ordered correctly, with the winner first.
+            // the final one with "ordering" of some sort. The weight will be the larest is the winner.
 
             Func<IEnumerable<IEnumerable<Tuple<int, int>>>, IEnumerable<Tuple<int, int>>> eScore = votingRecord =>
                 {
@@ -46,10 +46,22 @@ namespace RunMajorityElection
                                            group candidateWeight.Item2 by candidateWeight.Item1 into weightsByCandidate
                                            select Tuple.Create(weightsByCandidate.Key, weightsByCandidate.Sum());
 
-                    return from cInfo in candidateWeights
-                           orderby cInfo.Item2 descending
-                           select cInfo;
+                    return candidateWeights;
                 };
+
+            // Score the people.
+            var peopleScored = from p in people
+                               select pScore(p.FullRanking());
+
+            // Now score the election
+            var election = eScore(peopleScored);
+
+            Console.WriteLine("Election Results:");
+            foreach (var ranking in election.OrderBy(e => e.Item2))
+            {
+                Console.WriteLine("Candidate {0} had {1} votes.", ranking.Item1, ranking.Item2);
+            }
+
         }
     }
 }

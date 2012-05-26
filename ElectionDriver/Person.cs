@@ -60,5 +60,17 @@ namespace ElectionDriver
         {
             return _candidateOrdering[candidate];
         }
+
+        /// <summary>
+        /// Returns a full ranking by the person of the candidate list.
+        /// Their number one choice has the largest weight. The weights are
+        /// integer, and they are no gaps.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Tuple<int, int>> FullRanking()
+        {
+            return from i in Enumerable.Range(0, _candidateOrdering.Count)
+                   select Tuple.Create(i, _candidateOrdering[i]);
+        }
     }
 }
