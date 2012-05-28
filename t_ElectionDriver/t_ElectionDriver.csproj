@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="t_Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="t_Election.cs" />
+    <Compile Include="t_ESOnlyBestCounts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ElectionDriver\ElectionDriver.csproj">
