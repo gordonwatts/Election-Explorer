@@ -61,6 +61,7 @@ namespace RunMajorityElection
 
         private static int RunElection(int nPeople, int nCandidates, Func<IEnumerable<CandiateRanking>, IEnumerable<CandiateRanking>> pScore, Func<IEnumerable<IEnumerable<CandiateRanking>>, IEnumerable<CandiateRanking>> eScore)
         {
+
             var r = new Random();
             var people = (from idx in Enumerable.Range(0, nPeople)
                           select new Person(nCandidates, r)).ToArray();
@@ -76,7 +77,7 @@ namespace RunMajorityElection
             {
                 if (i != winner)
                 {
-                    var newwinner = RunElection(people, pScore, eScore, new int[] { i });
+                    var newwinner = RunElection(people.Select(p => p.RemoveCandidates(i)).ToArray(), pScore, eScore);
                     if (newwinner != winner)
                         flips++;
                 }
