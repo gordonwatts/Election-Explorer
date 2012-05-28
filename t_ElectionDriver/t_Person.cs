@@ -34,7 +34,7 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
-        [ExpectedException(typeof(KeyNotFoundException))]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void TestRankingOutOfBounds()
         {
             int count = 10;

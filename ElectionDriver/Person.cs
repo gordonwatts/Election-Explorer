@@ -13,8 +13,10 @@ namespace ElectionDriver
     {
         /// <summary>
         /// Keep track of the candidate ordering. Position i contains the ranking for candidate i.
+        /// _candidateOrdering[0] is the highest ranked, and _candidateOrdering[1] is 2nd highest,
+        /// etc.
         /// </summary>
-        private IDictionary<int, int> _candidateOrdering;
+        private int[] _candidateOrdering;
 
         /// <summary>
         /// Create Person and stash the random voting preferences for the number
@@ -31,14 +33,14 @@ namespace ElectionDriver
                            };
 
             var ordr = from possible in ordering
-                                 orderby possible.Prob
+                                 orderby possible.Prob descending
                                  select possible.Index;
 
             int index = 0;
-            _candidateOrdering = new Dictionary<int, int>();
+            _candidateOrdering = new int[candidates];
             foreach (var co in ordr)
             {
-                _candidateOrdering[index] = co;
+                _candidateOrdering[co] = index;
                 index++;
             }
         }
@@ -48,7 +50,7 @@ namespace ElectionDriver
         /// </summary>
         public int NumberOfCandidates
         {
-            get { return _candidateOrdering.Count; }
+            get { return _candidateOrdering.Length; }
         }
 
         /// <summary>
@@ -77,9 +79,9 @@ namespace ElectionDriver
                 holdBack = new SortedSet<int>();
             }
 
-            var list = (from i in Enumerable.Range(0, _candidateOrdering.Count)
+            var list = (from i in Enumerable.Range(0, _candidateOrdering.Length)
                    where !holdBack.Contains(i)
-                   orderby _candidateOrdering[i] ascending
+                   orderby _candidateOrdering[i] descending
                    select new CandiateRanking(i, _candidateOrdering[i])).ToArray();
 
             for (int i = 0; i < list.Length; i++)
