@@ -18,6 +18,47 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
+        public void TestExplicitCreation1()
+        {
+            var p = new Person(0);
+            Assert.AreEqual(1, p.FullRanking().Count(), "single candidate, not ranked");
+            Assert.AreEqual(0, p.FullRanking().First().candidate, "first candidate");
+            Assert.AreEqual(0, p.FullRanking().First().ranking, "first candidate ranking");
+            Assert.AreEqual(0, p.Ranking(0), "first candidate direct ranking");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void TestExplicitCreate1Bad()
+        {
+            var p = new Person(0);
+            p.Ranking(1);
+        }
+
+        [TestMethod]
+        public void TestExplicitCreation3()
+        {
+            var p = new Person(2, 0, 1);
+            Assert.AreEqual(1, p.Ranking(0), "Rank of 0");
+            Assert.AreEqual(0, p.Ranking(1), "Rank of 1");
+            Assert.AreEqual(2, p.Ranking(2), "Rank of 2");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestExplicitCreation3BadMissing()
+        {
+            var p = new Person(2, 0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestExplicitCreation3BadDuplicate()
+        {
+            var p = new Person(2, 0, 2);
+        }
+
+        [TestMethod]
         public void TestRankingOK()
         {
             int count = 10;

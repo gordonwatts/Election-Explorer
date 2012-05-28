@@ -13,8 +13,9 @@ namespace ElectionDriver
     {
         /// <summary>
         /// Keep track of the candidate ordering. Position i contains the ranking for candidate i.
-        /// _candidateOrdering[0] is the highest ranked, and _candidateOrdering[1] is 2nd highest,
-        /// etc.
+        /// _candidateOrdering[0] contains the ranking for candidate 0, 1 for candidate 1, etc.
+        /// The lowest number indicates the lowest rnaking. So if _candidateOrdering[0] is 0, then
+        /// that is the last favorite candidate of this person.
         /// </summary>
         private int[] _candidateOrdering;
 
@@ -46,6 +47,32 @@ namespace ElectionDriver
         }
 
         /// <summary>
+        /// Create a person, with the list of candidates in order from most favorite to least.
+        /// </summary>
+        /// <param name="candidatesInOrder">List of candidates, from most favorite to least</param>
+        /// <remarks>Every single candidate must be specified! This is mostly used for testing.</remarks>
+        public Person(params int[] candidatesInOrder)
+        {
+            if (candidatesInOrder == null)
+                throw new ArgumentNullException("Can't have a person who knows about zero candidates");
+
+            _candidateOrdering = new int[candidatesInOrder.Length];
+            var hit = new bool[candidatesInOrder.Length];
+
+            int ranking = candidatesInOrder.Length-1;
+            foreach (var c in candidatesInOrder)
+            {
+                if (c < 0 || c >= candidatesInOrder.Length)
+                    throw new ArgumentException(string.Format("Candidate '{0}' is longer than the implied length", c));
+                if (hit[c])
+                    throw new ArgumentException(string.Format("Candidate '{0}' was specified twice in the ordering to the Person ctor.", c));
+                hit[c] = true;
+                _candidateOrdering[c] = ranking;
+                ranking--;
+            }
+        }
+
+        /// <summary>
         /// Get the # of candidates in this person.
         /// </summary>
         public int NumberOfCandidates
@@ -61,6 +88,18 @@ namespace ElectionDriver
         public int Ranking(int candidate)
         {
             return _candidateOrdering[candidate];
+        }
+
+        /// <summary>
+        /// Returns a new person, with the candidates given removed.
+        /// </summary>
+        /// <param name="candidates"></param>
+        /// <returns></returns>
+        public Person RemoveCandidates(params int[] candidates)
+        {
+            if (candidates == null || candidates.Length == 0)
+                return this;
+            return this;
         }
 
         /// <summary>
