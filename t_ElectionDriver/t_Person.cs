@@ -28,7 +28,7 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestExplicitCreate1Bad()
         {
             var p = new Person(0);
@@ -75,7 +75,7 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestRankingOutOfBounds()
         {
             int count = 10;
@@ -95,7 +95,16 @@ namespace t_ElectionDriver
         [TestMethod]
         public void TestFullRankingWithOneGone()
         {
-            var p = new Person(3, new Random());
+            TestFullRankingWithOneGoneParameterized(new Person(0, 1, 2));
+            TestFullRankingWithOneGoneParameterized(new Person(0, 2, 1));
+            TestFullRankingWithOneGoneParameterized(new Person(1, 0, 2));
+            TestFullRankingWithOneGoneParameterized(new Person(1, 2, 0));
+            TestFullRankingWithOneGoneParameterized(new Person(2, 0, 1));
+            TestFullRankingWithOneGoneParameterized(new Person(2, 1, 0));
+        }
+
+        private static void TestFullRankingWithOneGoneParameterized(Person p)
+        {
             var fr = p.FullRanking(new int[] { 1 }).ToArray();
             Assert.AreEqual(2, fr.Length, "Incorrect number came back");
             CheckContiguous(fr.Select(c => c.ranking).ToArray(), 2);
@@ -103,8 +112,8 @@ namespace t_ElectionDriver
             Assert.IsFalse(s.Contains(1), "candidate 1 should not be in there");
 
             var fullOrdering = (from c in p.FullRanking()
-                               orderby c.ranking ascending
-                               select c).ToArray();
+                                orderby c.ranking ascending
+                                select c).ToArray();
             var partialOrdering = (from c in fr
                                    orderby c.ranking ascending
                                    select c).ToArray();
@@ -112,12 +121,31 @@ namespace t_ElectionDriver
             int i_p = 0;
             for (int i_f = 0; i_f < fullOrdering.Length; i_f++)
             {
-                if (fullOrdering[i_f].candidate == partialOrdering[i_p].candidate)
+                if (fullOrdering[i_f].candidate != 1)
                 {
-                    i_p++;
+                    if (fullOrdering[i_f].candidate == partialOrdering[i_p].candidate)
+                    {
+                        i_p++;
+                    }
                 }
             }
             Assert.AreEqual(partialOrdering.Length, i_p, "Partial list not ordered correctly");
+        }
+
+        [TestMethod]
+        public void TestFullRankingWithOneGone2()
+        {
+            var p = new Person(2, 1, 0);
+            Assert.AreEqual(0, p.Ranking(0), "Rank for 0");
+            Assert.AreEqual(2, p.Ranking(2), "Rank for 0");
+            var ranking = p.FullRanking(1).ToArray();
+            Assert.AreEqual(2, ranking.Length, "# of ranked outputs");
+
+            var c0 = ranking.Where(c => c.candidate == 0).First().ranking;
+            var c2 = ranking.Where(c => c.candidate == 2).First().ranking;
+
+            Assert.AreEqual(0, c0, "Ranking for candidate 0");
+            Assert.AreEqual(1, c2, "Ranking for candidate 2");
         }
 
         [TestMethod]
@@ -130,6 +158,44 @@ namespace t_ElectionDriver
             var s = new SortedSet<int>(fr.Select(c => c.candidate));
             Assert.IsFalse(s.Contains(1), "candidate 1 should not be in there");
             Assert.IsFalse(s.Contains(3), "candidate 3 should not be in there");
+        }
+
+        [TestMethod]
+        public void TestRemoveCandidates1()
+        {
+            var p = new Person(2, 1, 0);
+            var p1 = p.RemoveCandidates(1);
+            Assert.AreEqual(0, p1.Ranking(0), "Ranking of zero");
+            Assert.AreEqual(1, p1.Ranking(2), "Ranking of candidate #2");
+            Assert.AreEqual(2, p1.FullRanking().Count(), "# of candidates around now");
+            Assert.AreEqual(2, p1.NumberOfCandidates, "# of candidates stored");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestRemoveCandidates1RemovedCandidateReference()
+        {
+            var p = new Person(2, 1, 0);
+            var p1 = p.RemoveCandidates(1);
+            p1.Ranking(1);
+        }
+
+        [TestMethod]
+        public void TestRemoveCandidates2()
+        {
+            var p = new Person(2, 1, 0);
+            var p1 = p.RemoveCandidates(1, 0);
+            Assert.AreEqual(0, p1.Ranking(2), "Ranking of candidate #2");
+            Assert.AreEqual(1, p1.FullRanking().Count(), "# of candidates around now");
+        }
+
+        [TestMethod]
+        public void TestRemoveCandidates1Twice()
+        {
+            var p = new Person(2, 1, 0);
+            var p1 = p.RemoveCandidates(1);
+            var p2 = p.RemoveCandidates(1);
+            Assert.AreEqual(2, p2.NumberOfCandidates, "# of candidates after 1 removed twice");
         }
 
         /// <summary>

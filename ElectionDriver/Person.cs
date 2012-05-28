@@ -73,11 +73,29 @@ namespace ElectionDriver
         }
 
         /// <summary>
+        /// Given a candidate ranking, create a person.
+        /// </summary>
+        /// <param name="enumerable"></param>
+        public Person(CandiateRanking[] candidateList)
+        {
+            var maxCandidateNumber = candidateList.Select(c => c.candidate).Max();
+            _candidateOrdering = new int[maxCandidateNumber+1];
+            for (int i = 0; i < _candidateOrdering.Length; i++)
+            {
+                _candidateOrdering[i] = -1;
+            }
+            foreach (var c in candidateList)
+            {
+                _candidateOrdering[c.candidate] = c.ranking;
+            }
+        }
+
+        /// <summary>
         /// Get the # of candidates in this person.
         /// </summary>
         public int NumberOfCandidates
         {
-            get { return _candidateOrdering.Length; }
+            get { return _candidateOrdering.Where(r => r >= 0).Count(); }
         }
 
         /// <summary>
@@ -87,7 +105,14 @@ namespace ElectionDriver
         /// <returns></returns>
         public int Ranking(int candidate)
         {
-            return _candidateOrdering[candidate];
+            if (candidate >= _candidateOrdering.Length)
+                throw new ArgumentException(string.Format("Candidate '{0}' is not known.", candidate));
+
+            var r = _candidateOrdering[candidate];
+            if (r < 0)
+                throw new ArgumentException(string.Format("Candidate '{0}' is not known.", candidate));
+
+            return r;
         }
 
         /// <summary>
@@ -99,7 +124,8 @@ namespace ElectionDriver
         {
             if (candidates == null || candidates.Length == 0)
                 return this;
-            return this;
+
+            return new Person(FullRanking(candidates).ToArray());
         }
 
         /// <summary>
@@ -108,7 +134,7 @@ namespace ElectionDriver
         /// integer, and they are no gaps.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CandiateRanking> FullRanking(int[] candidatesToHoldBack = null)
+        public IEnumerable<CandiateRanking> FullRanking(params int[] candidatesToHoldBack)
         {
             SortedSet<int> holdBack;
             if (candidatesToHoldBack != null)
@@ -119,8 +145,8 @@ namespace ElectionDriver
             }
 
             var list = (from i in Enumerable.Range(0, _candidateOrdering.Length)
-                   where !holdBack.Contains(i)
-                   orderby _candidateOrdering[i] descending
+                   where _candidateOrdering[i] >= 0 && !holdBack.Contains(i)
+                   orderby _candidateOrdering[i] ascending
                    select new CandiateRanking(i, _candidateOrdering[i])).ToArray();
 
             for (int i = 0; i < list.Length; i++)
