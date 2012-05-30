@@ -149,13 +149,41 @@ namespace ElectionDriver
                    orderby _candidateOrdering[i] ascending
                    select new CandiateRanking(i, _candidateOrdering[i])).ToArray();
 
-            for (int i = 0; i < list.Length; i++)
-            {
-                list[i].ranking = i;
-            }
+            ReorderRanking(list);
 
             return list;
 
+        }
+
+        /// <summary>
+        /// Reorder the tranking for a list of candidates. We assume they are in order, with the loser
+        /// first (lowest ranking) to highest. Reordering is done in-place.
+        /// </summary>
+        /// <param name="rankings">candidate list in order from lowest ranking to highest</param>
+        private static void ReorderRanking(CandiateRanking[] rankings)
+        {
+            for (int i = 0; i < rankings.Length; i++)
+            {
+                rankings[i].ranking = i;
+            }
+        }
+
+        /// <summary>
+        /// Keep only the listed candidates.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public Person KeepCandidates(params int[] goodList)
+        {
+            SortedSet<int> keepers = new SortedSet<int>(goodList);
+
+            var list = (from i in Enumerable.Range(0, _candidateOrdering.Length)
+                        where _candidateOrdering[i] >= 0 && goodList.Contains(i)
+                        orderby _candidateOrdering[i] ascending
+                        select new CandiateRanking(i, _candidateOrdering[i])).ToArray();
+
+            ReorderRanking(list);
+            return new Person(list);
         }
     }
 }

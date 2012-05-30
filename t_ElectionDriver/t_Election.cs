@@ -122,5 +122,42 @@ namespace t_ElectionDriver
 
             Assert.AreEqual(ranking2, result, "Candidate ranking should be what came out of step 1");
         }
+
+        [TestMethod]
+        public void TestElectionWindowing()
+        {
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] ranking1 = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 2), new CandiateRanking(2, 3) };
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+                {
+                    Assert.IsTrue(people.All(p => p.FullRanking().Count() == 4), "Not always three candidates");
+                    return ranking1;
+                };
+
+            var step2 = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] ranking2 = new CandiateRanking[] { new CandiateRanking(1, 1), new CandiateRanking(0, 1) };
+            step2.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) => 
+                {
+                    Assert.IsTrue(people.All(p => p.FullRanking().Count() == 3), "Not always two candidates");
+                    return ranking2;
+                };
+
+            var step3 = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] ranking3 = new CandiateRanking[] { new CandiateRanking(1, 1)};
+            step3.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                Assert.IsTrue(people.All(p => p.FullRanking().Count() == 2), "Not always two candidates");
+                return ranking3;
+            };
+
+            var e = new Election();
+            e.NumberOfCandidates = 4;
+            e.AddStep(step1);
+            e.AddStep(step2);
+            e.AddStep(step3);
+            var result = e.RunSingleElection();
+
+            Assert.AreEqual(ranking3, result, "Candidate ranking should be what came out of step 1");
+        }
     }
 }

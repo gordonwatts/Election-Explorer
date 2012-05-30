@@ -163,6 +163,9 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.RunSingleElection">
             <summary>Sets the shim of Election.RunSingleElection()</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunSingleElectionb__1CandiateRanking">
+            <summary>Sets the shim of Election.&lt;RunSingleElection&gt;b__1(CandiateRanking c)</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
@@ -247,6 +250,9 @@
         <member name="P:ElectionDriver.Fakes.ShimPerson.FullRankingInt32Array">
             <summary>Sets the shim of Person.FullRanking(Int32[] candidatesToHoldBack)</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.KeepCandidatesInt32Array">
+            <summary>Sets the shim of Person.KeepCandidates(Int32[] goodList)</summary>
+        </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.NumberOfCandidatesGet">
             <summary>Sets the shim of Person.get_NumberOfCandidates()</summary>
         </member>
@@ -256,11 +262,20 @@
         <member name="P:ElectionDriver.Fakes.ShimPerson.RemoveCandidatesInt32Array">
             <summary>Sets the shim of Person.RemoveCandidates(Int32[] candidates)</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.ReorderRankingCandiateRankingArray">
+            <summary>Sets the shim of Person.ReorderRanking(CandiateRanking[] rankings)</summary>
+        </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson._FullRankingb__dInt32">
             <summary>Sets the shim of Person.&lt;FullRanking&gt;b__d(Int32 i)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson._FullRankingb__eInt32">
             <summary>Sets the shim of Person.&lt;FullRanking&gt;b__e(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson._KeepCandidatesb__12Int32">
+            <summary>Sets the shim of Person.&lt;KeepCandidates&gt;b__12(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson._KeepCandidatesb__13Int32">
+            <summary>Sets the shim of Person.&lt;KeepCandidates&gt;b__13(Int32 i)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson._ctorb__8CandiateRanking">
             <summary>Sets the shim of Person.&lt;.ctor&gt;b__8(CandiateRanking c)</summary>
@@ -273,6 +288,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.FullRankingInt32Array">
             <summary>Sets the shim of Person.FullRanking(Int32[] candidatesToHoldBack)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.KeepCandidatesInt32Array">
+            <summary>Sets the shim of Person.KeepCandidates(Int32[] goodList)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.NumberOfCandidatesGet">
             <summary>Sets the shim of Person.get_NumberOfCandidates()</summary>
@@ -288,6 +306,12 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._FullRankingb__eInt32">
             <summary>Sets the shim of Person.&lt;FullRanking&gt;b__e(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._KeepCandidatesb__12Int32">
+            <summary>Sets the shim of Person.&lt;KeepCandidates&gt;b__12(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._KeepCandidatesb__13Int32">
+            <summary>Sets the shim of Person.&lt;KeepCandidates&gt;b__13(Int32 i)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubESKeepThoseBetterThan">
             <summary>Stub type of ElectionDriver.ESKeepThoseBetterThan</summary>

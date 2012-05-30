@@ -198,6 +198,32 @@ namespace t_ElectionDriver
             Assert.AreEqual(2, p2.NumberOfCandidates, "# of candidates after 1 removed twice");
         }
 
+        [TestMethod]
+        public void TestKeepOnlyCandidatesOne()
+        {
+            var p = new Person(0, 1, 2, 3);
+            var p1 = p.KeepCandidates(1);
+            Assert.AreEqual(1, p1.NumberOfCandidates, "# of candidates when keeping 1");
+            Assert.AreEqual(1, p1.FullRanking().First().candidate, "#candidate # 1");
+            Assert.AreEqual(0, p1.FullRanking().First().ranking, "Candidate #1 ranking");
+        }
+
+        [TestMethod]
+        public void TestKeepOnlyCandidatestwo()
+        {
+            var p = new Person(3, 2, 1, 0);
+            var pn = p.KeepCandidates(3, 1);
+            Assert.AreEqual(2, pn.NumberOfCandidates, "# of candidates when keeping 1");
+            var p3 = pn.FullRanking().Where(c => c.candidate == 3).FirstOrDefault();
+            var p1 = pn.FullRanking().Where(c => c.candidate == 1).FirstOrDefault();
+
+            Assert.IsNotNull(p3, "Candidate 3");
+            Assert.IsNotNull(p1, "Candidate 1");
+
+            Assert.AreEqual(0, p1.ranking, "Candidate 1 ranking");
+            Assert.AreEqual(1, p3.ranking, "Candidate 3 ranking");
+        }
+
         /// <summary>
         /// Make sure this guy is contiguous.
         /// </summary>

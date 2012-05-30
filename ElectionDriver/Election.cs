@@ -40,9 +40,23 @@ namespace ElectionDriver
             var people = GeneratePeople().ToArray();
 
             List<CandiateRanking[]> results = new List<CandiateRanking[]>();
+            int[] keepOnly = new int[0];
+            int oldKeepCount = 0;
+            var peopleThisRound = people;
             foreach (var s in _steps)
             {
-                var stepResult = s.RunStep(people, results.ToArray());
+                // First, window out people if we need to.
+                if (keepOnly.Length != oldKeepCount)
+                {
+                    var keepThem = keepOnly.ToArray();
+                    peopleThisRound = peopleThisRound.Select(p => p.KeepCandidates(keepThem)).ToArray();
+                    oldKeepCount = keepOnly.Length;
+                }
+                
+                // Run the election
+                var stepResult = s.RunStep(peopleThisRound, results.ToArray());
+
+                // Some simple case results that will terminate our processing of the election.
                 if (stepResult == null)
                     throw new InvalidOperationException("Election step returned a null value!");
                 if (stepResult.Length == 0)
@@ -50,7 +64,11 @@ namespace ElectionDriver
                 if (stepResult.Length == 1)
                     return stepResult;
 
+                // Save the results for use in future steps.
                 results.Add(stepResult);
+
+                // And only let through the candidates that made it.
+                keepOnly = stepResult.Select(c => c.candidate).ToArray();
             }
 
             return results.Last();
