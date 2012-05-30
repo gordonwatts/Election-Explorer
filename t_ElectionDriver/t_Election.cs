@@ -106,5 +106,24 @@ namespace t_ElectionDriver
 
             Assert.AreEqual(ranking1, result, "Candidate ranking should be what came out of step 1");
         }
+
+        [TestMethod]
+        public void TestTwoStepElectionSimple()
+        {
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] ranking1 = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 2) };
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) => ranking1;
+
+            var step2 = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] ranking2 = new CandiateRanking[] { new CandiateRanking(1, 1) };
+            step2.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) => ranking2;
+
+            var e = new Election();
+            e.AddStep(step1);
+            e.AddStep(step2);
+            var result = e.RunSingleElection();
+
+            Assert.AreEqual(ranking2, result, "Candidate ranking should be what came out of step 1");
+        }
     }
 }
