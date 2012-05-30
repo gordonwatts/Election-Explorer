@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ElectionDriver.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:ElectionDriver.Fakes.ShimCandiateRanking">
+            <summary>Shim type of ElectionDriver.CandiateRanking</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimCandiateRanking.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimCandiateRanking.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimCandiateRanking.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimCandiateRanking.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimCandiateRanking.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimESOnlyBestCounts">
+            <summary>Shim type of ElectionDriver.ESOnlyBestCounts</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESOnlyBestCounts.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESOnlyBestCounts.#ctor(ElectionDriver.ESOnlyBestCounts)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESOnlyBestCounts.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESOnlyBestCounts.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESOnlyBestCounts.Bind(ElectionDriver.IElectionStep)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.Constructor">
+            <summary>Sets the shim of ESOnlyBestCounts.ESOnlyBestCounts()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.RunStepPersonArray">
+            <summary>Sets the shim of ESOnlyBestCounts.RunStep(Person[] people)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts._RunStepb__4CandiateRanking">
+            <summary>Sets the shim of ESOnlyBestCounts.&lt;RunStep&gt;b__4(CandiateRanking r)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts._RunStepb__6Int32">
+            <summary>Sets the shim of ESOnlyBestCounts.&lt;RunStep&gt;b__6(Int32 bc)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts._RunStepb__7IGroupingOfInt32Int32">
+            <summary>Sets the shim of ESOnlyBestCounts.&lt;RunStep&gt;b__7(IGrouping`2&lt;Int32,Int32&gt; candidatecounts)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimESOnlyBestCounts.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.AllInstances.RunStepPersonArray">
+            <summary>Sets the shim of ESOnlyBestCounts.RunStep(Person[] people)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection">
+            <summary>Shim type of ElectionDriver.Election</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.#ctor(ElectionDriver.Election)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AddStepIElectionStep">
+            <summary>Sets the shim of Election.AddStep(IElectionStep step)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.Constructor">
+            <summary>Sets the shim of Election.Election()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.GeneratePeople">
+            <summary>Sets the shim of Election.GeneratePeople()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.NumberOfCandidatesGet">
+            <summary>Sets the shim of Election.get_NumberOfCandidates()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.NumberOfCandidatesSetInt32">
+            <summary>Sets the shim of Election.set_NumberOfCandidates(Int32 value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.NumberOfPeopleGet">
+            <summary>Sets the shim of Election.get_NumberOfPeople()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.NumberOfPeopleSetInt32">
+            <summary>Sets the shim of Election.set_NumberOfPeople(Int32 value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.RunSingleElection">
+            <summary>Sets the shim of Election.RunSingleElection()</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.AddStepIElectionStep">
+            <summary>Sets the shim of Election.AddStep(IElectionStep step)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.GeneratePeople">
+            <summary>Sets the shim of Election.GeneratePeople()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.NumberOfCandidatesGet">
+            <summary>Sets the shim of Election.get_NumberOfCandidates()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.NumberOfCandidatesSetInt32">
+            <summary>Sets the shim of Election.set_NumberOfCandidates(Int32 value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.NumberOfPeopleGet">
+            <summary>Sets the shim of Election.get_NumberOfPeople()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.NumberOfPeopleSetInt32">
+            <summary>Sets the shim of Election.set_NumberOfPeople(Int32 value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunSingleElection">
+            <summary>Sets the shim of Election.RunSingleElection()</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimPerson">
+            <summary>Shim type of ElectionDriver.Person</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimPerson.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimPerson.#ctor(ElectionDriver.Person)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimPerson.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimPerson.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.ConstructorCandiateRankingArray">
+            <summary>Sets the shim of Person.Person(CandiateRanking[] candidateList)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.ConstructorInt32Array">
+            <summary>Sets the shim of Person.Person(Int32[] candidatesInOrder)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.ConstructorInt32Random">
+            <summary>Sets the shim of Person.Person(Int32 candidates, Random generator)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.FullRankingInt32Array">
+            <summary>Sets the shim of Person.FullRanking(Int32[] candidatesToHoldBack)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.NumberOfCandidatesGet">
+            <summary>Sets the shim of Person.get_NumberOfCandidates()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.RankingInt32">
+            <summary>Sets the shim of Person.Ranking(Int32 candidate)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.RemoveCandidatesInt32Array">
+            <summary>Sets the shim of Person.RemoveCandidates(Int32[] candidates)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson._FullRankingb__dInt32">
+            <summary>Sets the shim of Person.&lt;FullRanking&gt;b__d(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson._FullRankingb__eInt32">
+            <summary>Sets the shim of Person.&lt;FullRanking&gt;b__e(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson._ctorb__8CandiateRanking">
+            <summary>Sets the shim of Person.&lt;.ctor&gt;b__8(CandiateRanking c)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson._get_NumberOfCandidatesb__aInt32">
+            <summary>Sets the shim of Person.&lt;get_NumberOfCandidates&gt;b__a(Int32 r)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimPerson.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.FullRankingInt32Array">
+            <summary>Sets the shim of Person.FullRanking(Int32[] candidatesToHoldBack)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.NumberOfCandidatesGet">
+            <summary>Sets the shim of Person.get_NumberOfCandidates()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.RankingInt32">
+            <summary>Sets the shim of Person.Ranking(Int32 candidate)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances.RemoveCandidatesInt32Array">
+            <summary>Sets the shim of Person.RemoveCandidates(Int32[] candidates)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._FullRankingb__dInt32">
+            <summary>Sets the shim of Person.&lt;FullRanking&gt;b__d(Int32 i)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._FullRankingb__eInt32">
+            <summary>Sets the shim of Person.&lt;FullRanking&gt;b__e(Int32 i)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubESOnlyBestCounts">
+            <summary>Stub type of ElectionDriver.ESOnlyBestCounts</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESOnlyBestCounts.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESOnlyBestCounts.InitializeStub">
+            <summary>Initializes a new instance of type StubESOnlyBestCounts</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESOnlyBestCounts.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESOnlyBestCounts.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubElection">
+            <summary>Stub type of ElectionDriver.Election</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElection.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElection.InitializeStub">
+            <summary>Initializes a new instance of type StubElection</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElection.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElection.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubIElectionStep">
+            <summary>Stub type of ElectionDriver.IElectionStep</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubIElectionStep.#ctor">
+            <summary>Initializes a new instance of type StubIElectionStep</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubIElectionStep.ed::ElectionDriver#IElectionStep#RunStep(ElectionDriver.Person[])">
+            <summary>Sets the stub of IElectionStep.RunStep(Person[] people)</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubIElectionStep.RunStepPersonArray">
+            <summary>Sets the stub of IElectionStep.RunStep(Person[] people)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubPerson">
+            <summary>Stub type of ElectionDriver.Person</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubPerson.#ctor(ElectionDriver.CandiateRanking[])">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubPerson.#ctor(System.Int32[])">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubPerson.#ctor(System.Int32,System.Random)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubPerson.InitializeStub">
+            <summary>Initializes a new instance of type StubPerson</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubPerson.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubPerson.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+    </members>
+</doc>

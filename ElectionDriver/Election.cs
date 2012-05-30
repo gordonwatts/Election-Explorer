@@ -43,6 +43,8 @@ namespace ElectionDriver
             foreach (var s in _steps)
             {
                 stepResult = s.RunStep(people);
+                if (stepResult == null)
+                    throw new InvalidOperationException("Election step returned a null value!");
                 if (stepResult.Length == 1)
                     return stepResult;
             }
@@ -70,7 +72,7 @@ namespace ElectionDriver
         /// Add a step to the election steps.
         /// </summary>
         /// <param name="step"></param>
-        public void AddStep(ESOnlyBestCounts step)
+        public void AddStep(IElectionStep step)
         {
             _steps.Add(step);
         }
