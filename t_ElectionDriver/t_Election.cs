@@ -25,31 +25,12 @@ namespace t_ElectionDriver
             var r = e.RunSingleElection();
         }
 
-        /// <summary>
-        /// Simple election tester.
-        /// </summary>
-        class ESTester : IElectionStep
-        {
-            public ESTester()
-            {
-                Result = null;
-            }
-
-            public int NumberPeople { get; set; }
-            public CandiateRanking[] Result { get; set; }
-            public CandiateRanking[] RunStep(Person[] people)
-            {
-                NumberPeople = people.Length;
-                return Result;
-            }
-        }
-
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void TestSimpleStepNullFail()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
-            step.RunStepPersonArray = people =>
+            step.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
             {
                 return null;
             };
@@ -66,7 +47,7 @@ namespace t_ElectionDriver
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] rankings = new CandiateRanking[0];
-            step.RunStepPersonArray = people =>
+            step.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
             {
                 return rankings;
             };
@@ -87,7 +68,8 @@ namespace t_ElectionDriver
             int numPeople = 0;
             int numCandidates = 0;
             CandiateRanking[] r = new CandiateRanking[] { new CandiateRanking(0, 1) };
-            step.RunStepPersonArray = people => {
+            step.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
                 numPeople = people.Length;
                 numCandidates = people[0].FullRanking().Count();
                 return r;
@@ -111,11 +93,11 @@ namespace t_ElectionDriver
         {
             var step1 = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] ranking1 = new CandiateRanking[] { new CandiateRanking(0, 1) };
-            step1.RunStepPersonArray = people => ranking1;
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) => ranking1;
 
             var step2 = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] ranking2 = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 1) };
-            step2.RunStepPersonArray = people => ranking2;
+            step2.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) => ranking2;
 
             var e = new Election();
             e.AddStep(step1);

@@ -39,17 +39,19 @@ namespace ElectionDriver
             // Generate the people
             var people = GeneratePeople().ToArray();
 
-            CandiateRanking[] stepResult = null;
+            List<CandiateRanking[]> results = new List<CandiateRanking[]>();
             foreach (var s in _steps)
             {
-                stepResult = s.RunStep(people);
+                var stepResult = s.RunStep(people, results.ToArray());
                 if (stepResult == null)
                     throw new InvalidOperationException("Election step returned a null value!");
                 if (stepResult.Length == 1)
                     return stepResult;
+
+                results.Add(stepResult);
             }
 
-            return stepResult;
+            return results.Last();
         }
 
         /// <summary>

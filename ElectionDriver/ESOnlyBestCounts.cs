@@ -16,7 +16,7 @@ namespace ElectionDriver
         /// </summary>
         /// <param name="people"></param>
         /// <returns></returns>
-        public CandiateRanking[] RunStep(Person[] people)
+        public CandiateRanking[] RunStep(Person[] people, CandiateRanking[][] previousResults)
         {
             // Weights only work for the best candidate.
             var bestvote = from p in people

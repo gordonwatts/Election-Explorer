@@ -42,7 +42,7 @@ namespace t_ElectionDriver
         private CandiateRanking[] RunStep(params Person[] people)
         {
             var s = new ESOnlyBestCounts();
-            return s.RunStep(people);
+            return s.RunStep(people, new CandiateRanking[][] { });
         }
     }
 }

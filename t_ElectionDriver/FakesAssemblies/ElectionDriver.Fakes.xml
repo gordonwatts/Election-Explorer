@@ -46,8 +46,8 @@
         <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.Constructor">
             <summary>Sets the shim of ESOnlyBestCounts.ESOnlyBestCounts()</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.RunStepPersonArray">
-            <summary>Sets the shim of ESOnlyBestCounts.RunStep(Person[] people)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESOnlyBestCounts.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts._RunStepb__4CandiateRanking">
             <summary>Sets the shim of ESOnlyBestCounts.&lt;RunStep&gt;b__4(CandiateRanking r)</summary>
@@ -61,8 +61,8 @@
         <member name="T:ElectionDriver.Fakes.ShimESOnlyBestCounts.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.AllInstances.RunStepPersonArray">
-            <summary>Sets the shim of ESOnlyBestCounts.RunStep(Person[] people)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimESOnlyBestCounts.AllInstances.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESOnlyBestCounts.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElection">
             <summary>Shim type of ElectionDriver.Election</summary>
@@ -238,11 +238,11 @@
         <member name="M:ElectionDriver.Fakes.StubIElectionStep.#ctor">
             <summary>Initializes a new instance of type StubIElectionStep</summary>
         </member>
-        <member name="M:ElectionDriver.Fakes.StubIElectionStep.ed::ElectionDriver#IElectionStep#RunStep(ElectionDriver.Person[])">
-            <summary>Sets the stub of IElectionStep.RunStep(Person[] people)</summary>
+        <member name="M:ElectionDriver.Fakes.StubIElectionStep.ed::ElectionDriver#IElectionStep#RunStep(ElectionDriver.Person[],ElectionDriver.CandiateRanking[][])">
+            <summary>Sets the stub of IElectionStep.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
         </member>
-        <member name="F:ElectionDriver.Fakes.StubIElectionStep.RunStepPersonArray">
-            <summary>Sets the stub of IElectionStep.RunStep(Person[] people)</summary>
+        <member name="F:ElectionDriver.Fakes.StubIElectionStep.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the stub of IElectionStep.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubPerson">
             <summary>Stub type of ElectionDriver.Person</summary>
