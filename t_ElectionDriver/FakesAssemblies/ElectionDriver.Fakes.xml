@@ -22,6 +22,63 @@
         <member name="T:ElectionDriver.Fakes.ShimCandiateRanking.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
+        <member name="T:ElectionDriver.Fakes.ShimESKeepThoseBetterThan">
+            <summary>Shim type of ElectionDriver.ESKeepThoseBetterThan</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.#ctor(ElectionDriver.ESKeepThoseBetterThan)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.Bind(ElectionDriver.IElectionStep)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.ConstructorDouble">
+            <summary>Sets the shim of ESKeepThoseBetterThan.ESKeepThoseBetterThan(Double minFrac)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.DoNothingIfNoOnePassesGet">
+            <summary>Sets the shim of ESKeepThoseBetterThan.get_DoNothingIfNoOnePasses()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.DoNothingIfNoOnePassesSetBoolean">
+            <summary>Sets the shim of ESKeepThoseBetterThan.set_DoNothingIfNoOnePasses(Boolean value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.MinimumFractionGet">
+            <summary>Sets the shim of ESKeepThoseBetterThan.get_MinimumFraction()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.MinimumFractionSetDouble">
+            <summary>Sets the shim of ESKeepThoseBetterThan.set_MinimumFraction(Double value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESKeepThoseBetterThan.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.AllInstances.DoNothingIfNoOnePassesGet">
+            <summary>Sets the shim of ESKeepThoseBetterThan.get_DoNothingIfNoOnePasses()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.AllInstances.DoNothingIfNoOnePassesSetBoolean">
+            <summary>Sets the shim of ESKeepThoseBetterThan.set_DoNothingIfNoOnePasses(Boolean value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.AllInstances.MinimumFractionGet">
+            <summary>Sets the shim of ESKeepThoseBetterThan.get_MinimumFraction()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.AllInstances.MinimumFractionSetDouble">
+            <summary>Sets the shim of ESKeepThoseBetterThan.set_MinimumFraction(Double value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepThoseBetterThan.AllInstances.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESKeepThoseBetterThan.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimESOnlyBestCounts">
             <summary>Shim type of ElectionDriver.ESOnlyBestCounts</summary>
         </member>
@@ -201,6 +258,21 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._FullRankingb__eInt32">
             <summary>Sets the shim of Person.&lt;FullRanking&gt;b__e(Int32 i)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubESKeepThoseBetterThan">
+            <summary>Stub type of ElectionDriver.ESKeepThoseBetterThan</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESKeepThoseBetterThan.#ctor(System.Double)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESKeepThoseBetterThan.InitializeStub">
+            <summary>Initializes a new instance of type StubESKeepThoseBetterThan</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESKeepThoseBetterThan.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESKeepThoseBetterThan.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubESOnlyBestCounts">
             <summary>Stub type of ElectionDriver.ESOnlyBestCounts</summary>
