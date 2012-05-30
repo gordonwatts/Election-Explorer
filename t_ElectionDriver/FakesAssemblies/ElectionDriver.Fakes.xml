@@ -187,6 +187,36 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunSingleElection">
             <summary>Sets the shim of Election.RunSingleElection()</summary>
         </member>
+        <member name="T:ElectionDriver.Fakes.ShimElectionFailureException">
+            <summary>Shim type of ElectionDriver.ElectionFailureException</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionFailureException.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionFailureException.#ctor(ElectionDriver.ElectionFailureException)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionFailureException.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionFailureException.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionFailureException.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionFailureException.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionFailureException.ConstructorString">
+            <summary>Sets the shim of ElectionFailureException.ElectionFailureException(String message)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionFailureException.ConstructorStringException">
+            <summary>Sets the shim of ElectionFailureException.ElectionFailureException(String message, Exception inner)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElectionFailureException.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimPerson">
             <summary>Shim type of ElectionDriver.Person</summary>
         </member>
@@ -303,6 +333,84 @@
         </member>
         <member name="P:ElectionDriver.Fakes.StubElection.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubElectionFailureException">
+            <summary>Stub type of ElectionDriver.ElectionFailureException</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.AttachBackingFieldToHelpLink">
+            <summary>Attaches delegates to emulate StubElectionFailureException.HelpLink as a property with a backing field.</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.AttachBackingFieldToSource">
+            <summary>Attaches delegates to emulate StubElectionFailureException.Source as a property with a backing field.</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.DataGet">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.GetBaseException">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.GetBaseException01">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.GetObjectDataSerializationInfoStreamingContext">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.HelpLinkGet">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.HelpLinkSetString">
+            <summary>Sets the stub of Exception.set_HelpLink(String value)</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.InitializeStub">
+            <summary>Initializes a new instance of type StubElectionFailureException</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.MessageGet">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.SourceGet">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.SourceSetString">
+            <summary>Sets the stub of Exception.set_Source(String value)</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.StackTraceGet">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionFailureException.ToString">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="F:ElectionDriver.Fakes.StubElectionFailureException.ToString01">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.Data">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.HelpLink">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.Message">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.Source">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.StackTrace">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubIElectionStep">
             <summary>Stub type of ElectionDriver.IElectionStep</summary>

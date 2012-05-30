@@ -45,6 +45,8 @@ namespace ElectionDriver
                 var stepResult = s.RunStep(people, results.ToArray());
                 if (stepResult == null)
                     throw new InvalidOperationException("Election step returned a null value!");
+                if (stepResult.Length == 0)
+                    throw new ElectionFailureException("Election step returned zero candidates");
                 if (stepResult.Length == 1)
                     return stepResult;
 

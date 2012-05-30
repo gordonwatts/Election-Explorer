@@ -43,6 +43,7 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ElectionFailureException))]
         public void TestSimpleStepRuturnNoCandidates()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
@@ -53,12 +54,8 @@ namespace t_ElectionDriver
             };
 
             var e = new Election();
-            e.NumberOfCandidates = 15;
-            e.NumberOfPeople = 350;
             e.AddStep(step);
             var result = e.RunSingleElection();
-            Assert.IsNotNull(result, "Result return should not be null");
-            Assert.AreEqual(0, result.Length, "# of candidates that came back");
         }
 
         [TestMethod]
