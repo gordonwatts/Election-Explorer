@@ -15,6 +15,19 @@ namespace RunMajorityElection
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            uint nElections = 50;
+
+            var e = new Election()
+            {
+                NumberOfCandidates = 3,
+                NumberOfPeople = 4000
+            };
+            e.AddStep(new ESOnlyBestCounts());
+
+            var flips = e.RunElectionEnsemble(nElections);
+
+            Console.WriteLine("Saw {0} flips in {1} elections.", flips, nElections);
+#if false
             int nPeople = 4000;
             int nElections = 50;
             int nCandidates = 3;
@@ -57,6 +70,7 @@ namespace RunMajorityElection
             }
 
             Console.WriteLine("Number of flips was {0} in {1} elections.", flips, nElections);
+#endif
         }
 
         private static int RunElection(int nPeople, int nCandidates, Func<IEnumerable<CandiateRanking>, IEnumerable<CandiateRanking>> pScore, Func<IEnumerable<IEnumerable<CandiateRanking>>, IEnumerable<CandiateRanking>> eScore)
