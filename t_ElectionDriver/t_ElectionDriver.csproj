@@ -55,6 +55,7 @@
     <Compile Include="t_Election.cs" />
     <Compile Include="t_ESOnlyBestCounts.cs" />
     <Compile Include="t_ESKeepThoseBetterThan.cs" />
+    <Compile Include="t_ESKeepBestN.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ElectionDriver\ElectionDriver.csproj">

@@ -42,6 +42,7 @@
     <Compile Include="CandiateRanking.cs" />
     <Compile Include="Election.cs" />
     <Compile Include="ElectionFailureException.cs" />
+    <Compile Include="ESKeepBestN.cs" />
     <Compile Include="ESKeepThoseBetterThan.cs" />
     <Compile Include="ESOnlyBestCounts.cs" />
     <Compile Include="IElectionStep.cs" />

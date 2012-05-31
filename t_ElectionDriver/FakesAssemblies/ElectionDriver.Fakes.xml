@@ -22,6 +22,54 @@
         <member name="T:ElectionDriver.Fakes.ShimCandiateRanking.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
+        <member name="T:ElectionDriver.Fakes.ShimESKeepBestN">
+            <summary>Shim type of ElectionDriver.ESKeepBestN</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepBestN.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepBestN.#ctor(ElectionDriver.ESKeepBestN)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepBestN.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepBestN.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESKeepBestN.Bind(ElectionDriver.IElectionStep)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.CandidatesToKeepGet">
+            <summary>Sets the shim of ESKeepBestN.get_CandidatesToKeep()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.CandidatesToKeepSetUInt32">
+            <summary>Sets the shim of ESKeepBestN.set_CandidatesToKeep(UInt32 value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.ConstructorUInt32">
+            <summary>Sets the shim of ESKeepBestN.ESKeepBestN(UInt32 candidatesToKeep)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESKeepBestN.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN._RunStepb__0CandiateRanking">
+            <summary>Sets the shim of ESKeepBestN.&lt;RunStep&gt;b__0(CandiateRanking r)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimESKeepBestN.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.AllInstances.CandidatesToKeepGet">
+            <summary>Sets the shim of ESKeepBestN.get_CandidatesToKeep()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.AllInstances.CandidatesToKeepSetUInt32">
+            <summary>Sets the shim of ESKeepBestN.set_CandidatesToKeep(UInt32 value)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESKeepBestN.AllInstances.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESKeepBestN.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimESKeepThoseBetterThan">
             <summary>Shim type of ElectionDriver.ESKeepThoseBetterThan</summary>
         </member>
@@ -333,6 +381,21 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._KeepCandidatesb__13Int32">
             <summary>Sets the shim of Person.&lt;KeepCandidates&gt;b__13(Int32 i)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubESKeepBestN">
+            <summary>Stub type of ElectionDriver.ESKeepBestN</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESKeepBestN.#ctor(System.UInt32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESKeepBestN.InitializeStub">
+            <summary>Initializes a new instance of type StubESKeepBestN</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESKeepBestN.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESKeepBestN.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubESKeepThoseBetterThan">
             <summary>Stub type of ElectionDriver.ESKeepThoseBetterThan</summary>
