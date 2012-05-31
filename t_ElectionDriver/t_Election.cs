@@ -159,5 +159,49 @@ namespace t_ElectionDriver
 
             Assert.AreEqual(ranking3, result, "Candidate ranking should be what came out of step 1");
         }
+
+        [TestMethod]
+        public void RunSimpleElectionSetWithFlip()
+        {
+            var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 2 };
+
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            bool firstcall = true;
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+                {
+                    if (firstcall)
+                    {
+                        firstcall = false;
+                        return new CandiateRanking[] { new CandiateRanking(0, 1) };
+                    }
+                    else
+                    {
+                        var p1 = people.First();
+                        Assert.AreEqual(1, p1.NumberOfCandidates, "# of candidates on second sub-election");
+                        Assert.AreEqual(0, p1.FullRanking().First().candidate, "Kept candidate");
+                        return new CandiateRanking[] { new CandiateRanking(1, 1) };
+                    }
+                };
+            e.AddStep(step1);
+
+            var flips = e.RunElection();
+            Assert.AreEqual(1, flips, "Expected # of flips");
+        }
+
+        [TestMethod]
+        public void RunSimpleElectionSetWithNoFlip()
+        {
+            var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 2 };
+
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                return new CandiateRanking[] { new CandiateRanking(0, 1) };
+            };
+            e.AddStep(step1);
+
+            var flips = e.RunElection();
+            Assert.AreEqual(0, flips, "Expected # of flips");
+        }
     }
 }

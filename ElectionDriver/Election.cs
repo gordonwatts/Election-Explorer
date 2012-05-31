@@ -33,11 +33,25 @@ namespace ElectionDriver
         /// </summary>
         public CandiateRanking[] RunSingleElection()
         {
-            if (_steps.Count == 0)
-                throw new InvalidOperationException("Election has no steps defined");
-
             // Generate the people
             var people = GeneratePeople().ToArray();
+
+            return RunSingleElectionInternal(people);
+        }
+
+        /// <summary>
+        /// Run an election on a given set of people. Return the full candidate ordering
+        /// when we are done.
+        /// </summary>
+        /// <param name="people"></param>
+        /// <returns></returns>
+        private CandiateRanking[] RunSingleElectionInternal(Person[] people)
+        {
+            // Quick checks.
+            if (_steps.Count == 0)
+                throw new InvalidOperationException("Election has no steps defined");
+            if (people == null || people.Length == 0)
+                throw new ArgumentException("Election can't happen without people");
 
             List<CandiateRanking[]> results = new List<CandiateRanking[]>();
             int[] keepOnly = new int[0];
@@ -52,7 +66,7 @@ namespace ElectionDriver
                     peopleThisRound = peopleThisRound.Select(p => p.KeepCandidates(keepThem)).ToArray();
                     oldKeepCount = keepOnly.Length;
                 }
-                
+
                 // Run the election
                 var stepResult = s.RunStep(peopleThisRound, results.ToArray());
 
@@ -72,6 +86,37 @@ namespace ElectionDriver
             }
 
             return results.Last();
+        }
+
+        /// <summary>
+        /// Run an election with a set of randomly generated poeple. Once they are run,
+        /// remove each non-winning candidate in turn and count the number of times
+        /// that the winner changes.
+        /// </summary>
+        /// <returns></returns>
+        public int RunElection()
+        {
+            // Generate the people.
+            var people = GeneratePeople().ToArray();
+
+            // Next, run the election
+            var result = RunSingleElectionInternal(people);
+
+            // Now, loop over each candidate and remove them... unless they are the winner!
+            var winner = result[0].candidate;
+            int flips = 0;
+            for (int i_cand = 0; i_cand < NumberOfCandidates; i_cand++)
+            {
+                if (i_cand != winner)
+                {
+                    var peopleWithOut = people.Select(p => p.RemoveCandidates(i_cand)).ToArray();
+                    var resultWithOut = RunSingleElectionInternal(peopleWithOut);
+                    if (resultWithOut[0].candidate != winner)
+                        flips++;
+                }
+            }
+
+            return flips;
         }
 
         /// <summary>
@@ -98,5 +143,6 @@ namespace ElectionDriver
         {
             _steps.Add(step);
         }
+
     }
 }
