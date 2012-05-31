@@ -220,11 +220,11 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.RunSingleElectionInternalPersonArray">
             <summary>Sets the shim of Election.RunSingleElectionInternal(Person[] people)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunSingleElectionInternalb__1CandiateRanking">
-            <summary>Sets the shim of Election.&lt;RunSingleElectionInternal&gt;b__1(CandiateRanking c)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__1eInt32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1e(Int32 i_election)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunSingleElectionInternalb__2CandiateRanking">
-            <summary>Sets the shim of Election.&lt;RunSingleElectionInternal&gt;b__2(CandiateRanking fr)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__1fInt32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1f(Int32 c)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.AllInstances">
             <summary>Define shims for all instances members</summary>
@@ -258,6 +258,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunSingleElectionInternalPersonArray">
             <summary>Sets the shim of Election.RunSingleElectionInternal(Person[] people)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances._RunElectionEnsembleb__1eInt32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1e(Int32 i_election)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElectionFailureException">
             <summary>Shim type of ElectionDriver.ElectionFailureException</summary>

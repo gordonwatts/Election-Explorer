@@ -32,12 +32,12 @@ namespace ElectionDriver
         /// Run an election and return the results. The results are sorted by weight.
         /// </summary>
         /// <returns>Ranking of candidates from winner on down</returns>
-        public CandiateRanking[] RunSingleElection()
+        public async Task<CandiateRanking[]> RunSingleElection()
         {
             // Generate the people
             var people = GeneratePeople().ToArray();
 
-            return RunSingleElectionInternal(people);
+            return await RunSingleElectionInternal(people);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace ElectionDriver
         /// </summary>
         /// <param name="people"></param>
         /// <returns>Weights for everyone that got votes, ordered from winner on down</returns>
-        private CandiateRanking[] RunSingleElectionInternal(Person[] people)
+        private Task<CandiateRanking[]> RunSingleElectionInternal(Person[] people)
         {
             // Quick checks.
             if (_steps.Count == 0)
@@ -54,41 +54,44 @@ namespace ElectionDriver
             if (people == null || people.Length == 0)
                 throw new ArgumentException("Election can't happen without people");
 
-            List<CandiateRanking[]> results = new List<CandiateRanking[]>();
-            int[] keepOnly = new int[0];
-            int oldKeepCount = 0;
-            var peopleThisRound = people;
-            foreach (var s in _steps)
-            {
-                // First, window out people if we need to.
-                if (keepOnly.Length != oldKeepCount)
+            return Task<CandiateRanking[]>.Factory.StartNew(() =>
                 {
-                    var keepThem = keepOnly.ToArray();
-                    peopleThisRound = peopleThisRound.Select(p => p.KeepCandidates(keepThem)).ToArray();
-                    oldKeepCount = keepOnly.Length;
-                }
+                    List<CandiateRanking[]> results = new List<CandiateRanking[]>();
+                    int[] keepOnly = new int[0];
+                    int oldKeepCount = 0;
+                    var peopleThisRound = people;
+                    foreach (var s in _steps)
+                    {
+                        // First, window out people if we need to.
+                        if (keepOnly.Length != oldKeepCount)
+                        {
+                            var keepThem = keepOnly.ToArray();
+                            peopleThisRound = peopleThisRound.Select(p => p.KeepCandidates(keepThem)).ToArray();
+                            oldKeepCount = keepOnly.Length;
+                        }
 
-                // Run the election
-                var stepResult = s.RunStep(peopleThisRound, results.ToArray());
+                        // Run the election
+                        var stepResult = s.RunStep(peopleThisRound, results.ToArray());
 
-                // Some simple case results that will terminate our processing of the election.
-                if (stepResult == null)
-                    throw new InvalidOperationException("Election step returned a null value!");
-                if (stepResult.Length == 0)
-                    throw new ElectionFailureException("Election step returned zero candidates");
-                if (stepResult.Length == 1)
-                    return stepResult;
+                        // Some simple case results that will terminate our processing of the election.
+                        if (stepResult == null)
+                            throw new InvalidOperationException("Election step returned a null value!");
+                        if (stepResult.Length == 0)
+                            throw new ElectionFailureException("Election step returned zero candidates");
+                        if (stepResult.Length == 1)
+                            return stepResult;
 
-                // Save the results for use in future steps.
-                results.Add(stepResult);
+                        // Save the results for use in future steps.
+                        results.Add(stepResult);
 
-                // And only let through the candidates that made it.
-                keepOnly = stepResult.Select(c => c.candidate).ToArray();
-            }
+                        // And only let through the candidates that made it.
+                        keepOnly = stepResult.Select(c => c.candidate).ToArray();
+                    }
 
-            return (from fr in results.Last()
-                    orderby fr.ranking descending
-                    select fr).ToArray();
+                    return (from fr in results.Last()
+                            orderby fr.ranking descending
+                            select fr).ToArray();
+                });
         }
 
         /// <summary>
@@ -97,13 +100,13 @@ namespace ElectionDriver
         /// that the winner changes.
         /// </summary>
         /// <returns></returns>
-        public int RunElection()
+        public async Task<int> RunElection()
         {
             // Generate the people.
             var people = GeneratePeople().ToArray();
 
             // Next, run the election
-            var result = RunSingleElectionInternal(people);
+            var result = await RunSingleElectionInternal(people);
 
             // Now, loop over each candidate and remove them... unless they are the winner!
             var winner = result[0].candidate;
@@ -113,7 +116,7 @@ namespace ElectionDriver
                 if (i_cand != winner)
                 {
                     var peopleWithOut = people.Select(p => p.RemoveCandidates(i_cand)).ToArray();
-                    var resultWithOut = RunSingleElectionInternal(peopleWithOut);
+                    var resultWithOut = await RunSingleElectionInternal(peopleWithOut);
                     if (resultWithOut[0].candidate != winner)
                         flips++;
                 }
@@ -153,20 +156,16 @@ namespace ElectionDriver
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public int RunElectionEnsemble(uint numberOfElections)
+        public async Task<int> RunElectionEnsemble(uint numberOfElections)
         {
             if (numberOfElections == 0)
                 throw new ArgumentException("Asked to run an ensemble of zero elections!");
 
-            int flips = 0;
-            for (int i_election = 0; i_election < numberOfElections; i_election++)
-            {
-                var f = RunElection();
-                if (f > 0)
-                    flips++;
-            }
+            var allResults = from i_election in Enumerable.Range(0, (int)numberOfElections)
+                             select RunElection();
 
-            return flips;
+            var flipsPerResult = await Task.WhenAll(allResults.ToArray());
+            return flipsPerResult.Select(c => c > 0 ? 1 : 0).Sum();
         }
     }
 }

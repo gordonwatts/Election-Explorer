@@ -3,6 +3,7 @@ using ElectionDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.QualityTools.Testing.Fakes;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace t_ElectionDriver
 {
@@ -11,10 +12,10 @@ namespace t_ElectionDriver
     {
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void TestBlankRun()
+        public async Task TestBlankRun()
         {
             var e = new Election();
-            e.RunSingleElection();
+            await e.RunSingleElection();
         }
 
         [TestMethod]
@@ -27,7 +28,7 @@ namespace t_ElectionDriver
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void TestSimpleStepNullFail()
+        public async Task TestSimpleStepNullFail()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
             step.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
@@ -39,12 +40,12 @@ namespace t_ElectionDriver
             e.NumberOfCandidates = 15;
             e.NumberOfPeople = 350;
             e.AddStep(step);
-            var result = e.RunSingleElection();
+            await e.RunSingleElection();
         }
 
         [TestMethod]
         [ExpectedException(typeof(ElectionFailureException))]
-        public void TestSimpleStepRuturnNoCandidates()
+        public async Task TestSimpleStepRuturnNoCandidates()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] rankings = new CandiateRanking[0];
@@ -55,11 +56,11 @@ namespace t_ElectionDriver
 
             var e = new Election();
             e.AddStep(step);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
         }
 
         [TestMethod]
-        public void TestSimpleReturn()
+        public async void TestSimpleReturn()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
             int numPeople = 0;
@@ -76,7 +77,7 @@ namespace t_ElectionDriver
             e.NumberOfCandidates = 15;
             e.NumberOfPeople = 350;
             e.AddStep(step);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
 
             Assert.AreEqual(350, numPeople, "# of people");
             Assert.AreEqual(15, numCandidates, "# of candidates");
@@ -85,7 +86,7 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
-        public void TestElectionReturnOrder()
+        public async void TestElectionReturnOrder()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] r = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 10) };
@@ -98,13 +99,13 @@ namespace t_ElectionDriver
             e.NumberOfCandidates = 15;
             e.NumberOfPeople = 350;
             e.AddStep(step);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
 
             Assert.AreEqual(1, result[0].candidate, "Winner was not listed first");
         }
 
         [TestMethod]
-        public void TestElectionReturnOrder1()
+        public async void TestElectionReturnOrder1()
         {
             var step = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] r = new CandiateRanking[] { new CandiateRanking(0, 20), new CandiateRanking(1, 10) };
@@ -117,12 +118,12 @@ namespace t_ElectionDriver
             e.NumberOfCandidates = 15;
             e.NumberOfPeople = 350;
             e.AddStep(step);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
 
             Assert.AreEqual(0, result[0].candidate, "Winner was not listed first");
         }
         [TestMethod]
-        public void TestTwoStepElectionWithFirstAWinner()
+        public async void TestTwoStepElectionWithFirstAWinner()
         {
             var step1 = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] ranking1 = new CandiateRanking[] { new CandiateRanking(0, 1) };
@@ -135,13 +136,13 @@ namespace t_ElectionDriver
             var e = new Election();
             e.AddStep(step1);
             e.AddStep(step2);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
 
             Assert.AreEqual(ranking1, result, "Candidate ranking should be what came out of step 1");
         }
 
         [TestMethod]
-        public void TestTwoStepElectionSimple()
+        public async void TestTwoStepElectionSimple()
         {
             var step1 = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] ranking1 = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 2) };
@@ -154,13 +155,13 @@ namespace t_ElectionDriver
             var e = new Election();
             e.AddStep(step1);
             e.AddStep(step2);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
 
             Assert.AreEqual(ranking2, result, "Candidate ranking should be what came out of step 1");
         }
 
         [TestMethod]
-        public void TestElectionWindowing()
+        public async void TestElectionWindowing()
         {
             var step1 = new ElectionDriver.Fakes.StubIElectionStep();
             CandiateRanking[] ranking1 = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 2), new CandiateRanking(2, 3) };
@@ -191,13 +192,13 @@ namespace t_ElectionDriver
             e.AddStep(step1);
             e.AddStep(step2);
             e.AddStep(step3);
-            var result = e.RunSingleElection();
+            var result = await e.RunSingleElection();
 
             Assert.AreEqual(ranking3, result, "Candidate ranking should be what came out of step 1");
         }
 
         [TestMethod]
-        public void RunSimpleElectionSetWithFlip()
+        public async void RunSimpleElectionSetWithFlip()
         {
             var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 2 };
 
@@ -220,12 +221,12 @@ namespace t_ElectionDriver
                 };
             e.AddStep(step1);
 
-            var flips = e.RunElection();
+            var flips = await e.RunElection();
             Assert.AreEqual(1, flips, "Expected # of flips");
         }
 
         [TestMethod]
-        public void RunElection20Times()
+        public async void RunElection20Times()
         {
             var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 2 };
 
@@ -249,12 +250,12 @@ namespace t_ElectionDriver
             };
             e.AddStep(step1);
 
-            var flips = e.RunElectionEnsemble(20);
+            var flips = await e.RunElectionEnsemble(20);
             Assert.AreEqual(20, flips, "Expected # of flips");
         }
         
         [TestMethod]
-        public void RunSimpleElectionSetWithNoFlip()
+        public async void RunSimpleElectionSetWithNoFlip()
         {
             var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 2 };
 
@@ -265,7 +266,7 @@ namespace t_ElectionDriver
             };
             e.AddStep(step1);
 
-            var flips = e.RunElection();
+            var flips = await e.RunElection();
             Assert.AreEqual(0, flips, "Expected # of flips");
         }
     }
