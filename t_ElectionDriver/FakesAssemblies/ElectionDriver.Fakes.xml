@@ -175,6 +175,9 @@
         <member name="P:ElectionDriver.Fakes.ShimElection._RunSingleElectionInternalb__1CandiateRanking">
             <summary>Sets the shim of Election.&lt;RunSingleElectionInternal&gt;b__1(CandiateRanking c)</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunSingleElectionInternalb__2CandiateRanking">
+            <summary>Sets the shim of Election.&lt;RunSingleElectionInternal&gt;b__2(CandiateRanking fr)</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>

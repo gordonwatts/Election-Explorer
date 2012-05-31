@@ -29,8 +29,9 @@ namespace ElectionDriver
         public int NumberOfCandidates { get; set; }
 
         /// <summary>
-        /// Run an election and return the results.
+        /// Run an election and return the results. The results are sorted by weight.
         /// </summary>
+        /// <returns>Ranking of candidates from winner on down</returns>
         public CandiateRanking[] RunSingleElection()
         {
             // Generate the people
@@ -44,7 +45,7 @@ namespace ElectionDriver
         /// when we are done.
         /// </summary>
         /// <param name="people"></param>
-        /// <returns></returns>
+        /// <returns>Weights for everyone that got votes, ordered from winner on down</returns>
         private CandiateRanking[] RunSingleElectionInternal(Person[] people)
         {
             // Quick checks.
@@ -85,7 +86,9 @@ namespace ElectionDriver
                 keepOnly = stepResult.Select(c => c.candidate).ToArray();
             }
 
-            return results.Last();
+            return (from fr in results.Last()
+                    orderby fr.ranking descending
+                    select fr).ToArray();
         }
 
         /// <summary>

@@ -82,9 +82,45 @@ namespace t_ElectionDriver
             Assert.AreEqual(15, numCandidates, "# of candidates");
 
             Assert.AreEqual(r, result, "Candidate ranking that came back isn't right");
-
         }
 
+        [TestMethod]
+        public void TestElectionReturnOrder()
+        {
+            var step = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] r = new CandiateRanking[] { new CandiateRanking(0, 1), new CandiateRanking(1, 10) };
+            step.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                return r;
+            };
+
+            var e = new Election();
+            e.NumberOfCandidates = 15;
+            e.NumberOfPeople = 350;
+            e.AddStep(step);
+            var result = e.RunSingleElection();
+
+            Assert.AreEqual(1, result[0].candidate, "Winner was not listed first");
+        }
+
+        [TestMethod]
+        public void TestElectionReturnOrder1()
+        {
+            var step = new ElectionDriver.Fakes.StubIElectionStep();
+            CandiateRanking[] r = new CandiateRanking[] { new CandiateRanking(0, 20), new CandiateRanking(1, 10) };
+            step.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                return r;
+            };
+
+            var e = new Election();
+            e.NumberOfCandidates = 15;
+            e.NumberOfPeople = 350;
+            e.AddStep(step);
+            var result = e.RunSingleElection();
+
+            Assert.AreEqual(0, result[0].candidate, "Winner was not listed first");
+        }
         [TestMethod]
         public void TestTwoStepElectionWithFirstAWinner()
         {
