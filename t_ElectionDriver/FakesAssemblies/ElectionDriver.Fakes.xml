@@ -163,6 +163,9 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.RunElection">
             <summary>Sets the shim of Election.RunElection()</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.RunElectionEnsembleUInt32">
+            <summary>Sets the shim of Election.RunElectionEnsemble(UInt32 numberOfElections)</summary>
+        </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.RunSingleElection">
             <summary>Sets the shim of Election.RunSingleElection()</summary>
         </member>
@@ -195,6 +198,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunElection">
             <summary>Sets the shim of Election.RunElection()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunElectionEnsembleUInt32">
+            <summary>Sets the shim of Election.RunElectionEnsemble(UInt32 numberOfElections)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunSingleElection">
             <summary>Sets the shim of Election.RunSingleElection()</summary>

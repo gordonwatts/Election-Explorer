@@ -144,5 +144,26 @@ namespace ElectionDriver
             _steps.Add(step);
         }
 
+        /// <summary>
+        /// Repeatedly run the election, and count the number of elections that
+        /// contain at least one flip.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public int RunElectionEnsemble(uint numberOfElections)
+        {
+            if (numberOfElections == 0)
+                throw new ArgumentException("Asked to run an ensemble of zero elections!");
+
+            int flips = 0;
+            for (int i_election = 0; i_election < numberOfElections; i_election++)
+            {
+                var f = RunElection();
+                if (f > 0)
+                    flips++;
+            }
+
+            return flips;
+        }
     }
 }
