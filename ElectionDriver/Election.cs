@@ -220,7 +220,36 @@ namespace ElectionDriver
             r.flips = flipsPerResult.Select(c => c.flips > 0 ? 1 : 0).Sum();
 
             // Now, get back the election ordering results
+            var rankingGroups = from f in flipsPerResult
+                          from rOrder in Enumerable.Range(0, f.candidateOrdering.Length)
+                          group rOrder by f.candidateOrdering[rOrder];
 
+            var rankingPerCandidate = from candidate in rankingGroups
+                                      select new
+                                      {
+                                          Candidate = candidate.Key,
+                                          Ranking = from candRank in candidate
+                                                           group  candRank by candRank into candidateListing
+                                                           select new
+                                                           {
+                                                               Rank = candidateListing.Key,
+                                                               Count = candidateListing.Count()
+                                                           }
+                                      };
+
+            var rankingPerCandidateDict = rankingPerCandidate.ToDictionary(k => k.Candidate, v => v.Ranking.ToDictionary(vk => vk.Rank, vk => vk.Count));
+            r.candidateResults = new ElectionEnsembleResults.CandidateResults[NumberOfCandidates];
+            for (int iCand = 0; iCand < NumberOfCandidates; iCand++)
+            {
+                r.candidateResults[iCand].resultTimes = new int[NumberOfCandidates];
+                if (rankingPerCandidateDict.ContainsKey(iCand)) {
+                    for (int iRank = 0; iRank < NumberOfCandidates; iRank++) 
+                    {
+                        if (rankingPerCandidateDict[iCand].ContainsKey(iRank))
+                            r.candidateResults[iCand].resultTimes[iRank] = rankingPerCandidateDict[iCand][iRank];
+                    }
+                }
+            }
             return r;
         }
     }

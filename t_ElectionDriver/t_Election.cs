@@ -228,32 +228,37 @@ namespace t_ElectionDriver
         }
 
         [TestMethod]
-        public async void RunElection20Times()
+        public async Task RunElection20Times()
         {
             var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 2 };
 
             var step1 = new ElectionDriver.Fakes.StubIElectionStep();
-            bool firstcall = true;
+            int counterTimesCalledWith2 = 0;
+            int counterTimesCalledWith1 = 0;
             step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
             {
-                if (firstcall)
-                {
-                    firstcall = false;
-                    return new CandiateRanking[] { new CandiateRanking(0, 1) };
-                }
-                else
-                {
-                    firstcall = true;
-                    var p1 = people.First();
-                    Assert.AreEqual(1, p1.NumberOfCandidates, "# of candidates on second sub-election");
-                    Assert.AreEqual(0, p1.FullRanking().First().candidate, "Kept candidate");
+                if (people[0].NumberOfCandidates == 1) {
+                    counterTimesCalledWith1++;
                     return new CandiateRanking[] { new CandiateRanking(1, 1) };
                 }
+                if (people[0].NumberOfCandidates == 2) {
+                    counterTimesCalledWith2++;
+                    return new CandiateRanking[] { new CandiateRanking(0, 1) };
+                }
+                Assert.Fail("How do we deal with more than 2 candidates!?");
+                return null;
             };
             e.AddStep(step1);
 
             var result = await e.RunElectionEnsemble(20);
             Assert.AreEqual(20, result.flips, "Expected # of flips");
+            Assert.AreEqual(20, counterTimesCalledWith2, "Times called with 2");
+            Assert.AreEqual(20, counterTimesCalledWith1, "Times called with 1");
+            Assert.AreEqual(2, result.candidateResults.Length, "# of different winners");
+            Assert.AreEqual(20, result.candidateResults[0].resultTimes[0], "# of times candidate zero won");
+            Assert.AreEqual(0, result.candidateResults[0].resultTimes[1], "# of times candidate zero was second");
+            Assert.AreEqual(0, result.candidateResults[1].resultTimes[0], "# of times candidate one was first");
+            Assert.AreEqual(0, result.candidateResults[1].resultTimes[1], "# of times candidate one was second");
         }
         
         [TestMethod]
