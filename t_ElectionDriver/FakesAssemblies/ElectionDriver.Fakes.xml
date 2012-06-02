@@ -184,6 +184,9 @@
         <member name="M:ElectionDriver.Fakes.ShimElection.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AddPeopleConstraintDoubleFuncOfPersonBoolean">
+            <summary>Sets the shim of Election.AddPeopleConstraint(Double fraction, Func`2&lt;Person,Boolean&gt; peopleConstraint)</summary>
+        </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AddStepIElectionStep">
             <summary>Sets the shim of Election.AddStep(IElectionStep step)</summary>
         </member>
@@ -220,17 +223,17 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.RunSingleElectionInternalPersonArray">
             <summary>Sets the shim of Election.RunSingleElectionInternal(Person[] people)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__24Int32">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__24(Int32 i_election)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__36Int32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__36(Int32 i_election)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__25ElectionElectionResults">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__25(ElectionResults c)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__37ElectionElectionResults">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__37(ElectionResults c)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__26ElectionElectionResults">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__26(ElectionResults f)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__38ElectionElectionResults">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__38(ElectionResults f)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__2bInt32">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__2b(Int32 candRank)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__3dInt32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__3d(Int32 candRank)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionb__10CandiateRanking">
             <summary>Sets the shim of Election.&lt;RunElection&gt;b__10(CandiateRanking rs)</summary>
@@ -240,6 +243,9 @@
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.AllInstances">
             <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.AddPeopleConstraintDoubleFuncOfPersonBoolean">
+            <summary>Sets the shim of Election.AddPeopleConstraint(Double fraction, Func`2&lt;Person,Boolean&gt; peopleConstraint)</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.AddStepIElectionStep">
             <summary>Sets the shim of Election.AddStep(IElectionStep step)</summary>
@@ -271,8 +277,8 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunSingleElectionInternalPersonArray">
             <summary>Sets the shim of Election.RunSingleElectionInternal(Person[] people)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances._RunElectionEnsembleb__24Int32">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__24(Int32 i_election)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances._RunElectionEnsembleb__36Int32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__36(Int32 i_election)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults">
             <summary>Shim type of ElectionDriver.Election+ElectionEnsembleResults</summary>

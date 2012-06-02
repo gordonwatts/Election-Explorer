@@ -140,8 +140,77 @@ namespace ElectionDriver
         private IEnumerable<Person> GeneratePeople()
         {
             var r = new Random();
-            return from i in Enumerable.Range(0, NumberOfPeople)
-                   select new Person(NumberOfCandidates, r);
+            bool satisfiedAllConstraints = _constraints.Count == 0;
+            int constraintIndex = 0;
+            int counter = 0;
+            int thisConstraintSatisifedEvents = 0;
+
+            var constraints = (from c in _constraints
+                               orderby c.fraction ascending
+                               select c).ToArray();
+
+            List<Person> alreadyGood = new List<Person>();
+
+            while (counter < NumberOfPeople)
+            {
+                var p = new Person(NumberOfCandidates, r);
+                if (!satisfiedAllConstraints)
+                {
+                        if (constraints.Take(constraintIndex).Where(c => c.constraint(p)).Any())
+                            continue;
+                        if (!constraints[constraintIndex].constraint(p))
+                            continue;
+                        thisConstraintSatisifedEvents++;
+                        if (thisConstraintSatisifedEvents >= (constraints[constraintIndex].fraction * NumberOfPeople))
+                        {
+                            constraintIndex++;
+                            if (constraintIndex < constraints.Length)
+                            {
+                                thisConstraintSatisifedEvents = alreadyGood.Where(lp => constraints[constraintIndex].constraint(lp)).Count();
+                            }
+                            else
+                            {
+                                satisfiedAllConstraints = true;
+                            }
+                        }
+                }
+                else
+                {
+                    if (constraints.Where(c => c.constraint(p)).Any())
+                        continue;
+                }
+
+                alreadyGood.Add(p);
+                yield return p;
+                counter++;
+            }
+
+            if (!satisfiedAllConstraints)
+            {
+                throw new InvalidOperationException("People constraints may be incompatible - unable to satisfy them this time around!");
+            }
+        }
+
+        /// <summary>
+        /// Keep track of the constraints we will put on the people we generate.
+        /// </summary>
+        private struct PeopleConstraint
+        {
+            public double fraction;
+            public Func<Person, bool> constraint;
+        }
+
+        private List<PeopleConstraint> _constraints = new List<PeopleConstraint>();
+
+        /// <summary>
+        /// Make sure exactly fraction of events satisfy the constraint. This remains true
+        /// even if multiple guys are added as constraints! So be ware! :-)
+        /// </summary>
+        /// <param name="fraction"></param>
+        /// <param name="peopleChecK"></param>
+        public void AddPeopleConstraint(double fraction, Func<Person, bool> peopleConstraint)
+        {
+            _constraints.Add(new PeopleConstraint() { fraction = fraction, constraint = peopleConstraint });
         }
 
         /// <summary>

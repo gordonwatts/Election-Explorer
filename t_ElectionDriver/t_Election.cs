@@ -302,5 +302,72 @@ namespace t_ElectionDriver
             var flips = await e.RunElection();
             Assert.AreEqual(0, flips.flips, "Expected # of flips");
         }
+
+        [TestMethod]
+        public async Task TestFixPeople1Requirement()
+        {
+            var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 10 };
+
+            e.AddPeopleConstraint(0.3, p => p.Ranking(0) == 1);
+
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            int countOfNumber1 = 0;
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                countOfNumber1 = people.Where(p => p.Ranking(0) == 1).Count();
+                return new CandiateRanking[] { new CandiateRanking(0, 1) };
+            };
+            e.AddStep(step1);
+
+            var flips = await e.RunSingleElection();
+            Assert.AreEqual(3, countOfNumber1, "# of times the zero candidate is 1 shoudl be 3!");
+        }
+
+        [TestMethod]
+        public async Task TestFixPeople2Requirement()
+        {
+            var e = new Election() { NumberOfCandidates = 3, NumberOfPeople = 10 };
+
+            e.AddPeopleConstraint(0.3, p => p.Ranking(0) == 1);
+            e.AddPeopleConstraint(0.5, p => p.Ranking(1) == 1);
+
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            int countOfNumber1 = 0;
+            int countOfNumber2 = 0;
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                countOfNumber1 = people.Where(p => p.Ranking(0) == 1).Count();
+                countOfNumber2 = people.Where(p => p.Ranking(1) == 1).Count();
+                return new CandiateRanking[] { new CandiateRanking(0, 1) };
+            };
+            e.AddStep(step1);
+
+            var flips = await e.RunSingleElection();
+            Assert.AreEqual(3, countOfNumber1, "# of times the zero candidate is 1 shoudl be 3!");
+            Assert.AreEqual(5, countOfNumber2, "# of times the zero candidate is 2 shoudl be 5!");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public async Task TestFixPeopleImpossibleRequirement()
+        {
+            var e = new Election() { NumberOfCandidates = 2, NumberOfPeople = 10 };
+
+            e.AddPeopleConstraint(0.7, p => p.Ranking(0) == 1);
+            e.AddPeopleConstraint(0.7, p => p.Ranking(1) == 1);
+
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            int countOfNumber1 = 0;
+            int countOfNumber2 = 0;
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                countOfNumber1 = people.Where(p => p.Ranking(0) == 1).Count();
+                countOfNumber2 = people.Where(p => p.Ranking(1) == 0).Count();
+                return new CandiateRanking[] { new CandiateRanking(0, 1) };
+            };
+            e.AddStep(step1);
+            var flips = await e.RunSingleElection();
+
+        }
     }
 }
