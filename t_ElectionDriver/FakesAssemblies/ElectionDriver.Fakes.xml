@@ -220,11 +220,17 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.RunSingleElectionInternalPersonArray">
             <summary>Sets the shim of Election.RunSingleElectionInternal(Person[] people)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__1eInt32">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1e(Int32 i_election)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__23Int32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__23(Int32 i_election)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__1fInt32">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1f(Int32 c)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionEnsembleb__24ElectionElectionResults">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__24(ElectionResults c)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionb__10CandiateRanking">
+            <summary>Sets the shim of Election.&lt;RunElection&gt;b__10(CandiateRanking rs)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection._RunElectionb__fCandiateRanking">
+            <summary>Sets the shim of Election.&lt;RunElection&gt;b__f(CandiateRanking rs)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.AllInstances">
             <summary>Define shims for all instances members</summary>
@@ -259,8 +265,50 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.RunSingleElectionInternalPersonArray">
             <summary>Sets the shim of Election.RunSingleElectionInternal(Person[] people)</summary>
         </member>
-        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances._RunElectionEnsembleb__1eInt32">
-            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1e(Int32 i_election)</summary>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances._RunElectionEnsembleb__23Int32">
+            <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__23(Int32 i_election)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults">
+            <summary>Shim type of ElectionDriver.Election+ElectionEnsembleResults</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.#ctor(ElectionDriver.Election.ElectionEnsembleResults)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.Constructor">
+            <summary>Sets the shim of ElectionEnsembleResults.ElectionEnsembleResults()</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.ShimCandidateResults">
+            <summary>Shim type of ElectionDriver.Election+ElectionEnsembleResults+CandidateResults</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.ShimCandidateResults.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.ShimCandidateResults.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.ShimCandidateResults.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.ShimCandidateResults.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.ShimElectionEnsembleResults.ShimCandidateResults.AllInstances">
+            <summary>Define shims for all instances members</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElection.ShimElectionResults">
             <summary>Shim type of ElectionDriver.Election+ElectionResults</summary>

@@ -222,7 +222,9 @@ namespace t_ElectionDriver
             e.AddStep(step1);
 
             var flips = await e.RunElection();
-            Assert.AreEqual(1, flips, "Expected # of flips");
+            Assert.AreEqual(1, flips.flips, "Expected # of flips");
+            Assert.AreEqual(1, flips.candidateOrdering.Length, "# of rnaking candidates");
+            Assert.AreEqual(0, flips.candidateOrdering[0], "Candidate order 0");
         }
 
         [TestMethod]
@@ -267,7 +269,7 @@ namespace t_ElectionDriver
             e.AddStep(step1);
 
             var flips = await e.RunElection();
-            Assert.AreEqual(0, flips, "Expected # of flips");
+            Assert.AreEqual(0, flips.flips, "Expected # of flips");
         }
     }
 }

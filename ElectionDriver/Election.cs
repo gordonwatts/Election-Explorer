@@ -100,7 +100,7 @@ namespace ElectionDriver
         /// that the winner changes.
         /// </summary>
         /// <returns></returns>
-        public async Task<int> RunElection()
+        public async Task<ElectionResults> RunElection()
         {
             // Generate the people.
             var people = GeneratePeople().ToArray();
@@ -122,7 +122,15 @@ namespace ElectionDriver
                 }
             }
 
-            return flips;
+            // Build the result
+
+            var r = new ElectionResults();
+            r.flips = flips;
+            r.candidateOrdering = (from rs in result
+                                   orderby rs.ranking
+                                   select rs.candidate).ToArray();
+
+            return r;
         }
 
         /// <summary>
@@ -165,13 +173,39 @@ namespace ElectionDriver
             public int[] candidateOrdering;
         }
 
+        public class ElectionEnsembleResults
+        {
+            /// <summary>
+            /// The number of times an election winner changed when a person was removed from
+            /// a population/electoin run.
+            /// </summary>
+            public int flips;
+
+            /// <summary>
+            /// Hold the ranking frequency info from the straight-up elections.
+            /// </summary>
+            public struct CandidateResults
+            {
+                /// <summary>
+                /// The times that this candidate got first (index 0), second (index 1), etc.
+                /// from the full on election
+                /// </summary>
+                public int[] resultTimes;
+            }
+
+            /// <summary>
+            /// The times in each guy for candidate 0, 1, 2, etc.
+            /// </summary>
+            public CandidateResults[] candidateResults;
+        }
+
         /// <summary>
         /// Repeatedly run the election, and count the number of elections that
         /// contain at least one flip.
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public async Task<ElectionResults> RunElectionEnsemble(uint numberOfElections)
+        public async Task<ElectionEnsembleResults> RunElectionEnsemble(uint numberOfElections)
         {
             if (numberOfElections == 0)
                 throw new ArgumentException("Asked to run an ensemble of zero elections!");
@@ -181,8 +215,12 @@ namespace ElectionDriver
 
             var flipsPerResult = await Task.WhenAll(allResults.ToArray());
 
-            var r = new ElectionResults();
-            r.flips = flipsPerResult.Select(c => c > 0 ? 1 : 0).Sum();
+            // Do the simple part of the results - the number of flips.
+            var r = new ElectionEnsembleResults();
+            r.flips = flipsPerResult.Select(c => c.flips > 0 ? 1 : 0).Sum();
+
+            // Now, get back the election ordering results
+
             return r;
         }
     }
