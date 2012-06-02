@@ -47,16 +47,19 @@ namespace RunSpokesElection
 
             // Do a trend as a function of candidate 0...
 
+            double pointDelta = 0.02;
+
             var eTrend = new ElectionTrend(e);
             var results = eTrend.RunTrend(
-                (point, numPoints) => Tuple.Create<double, Func<Person, bool>>(0.02 * point, p => p.Ranking(0) == nCandidates - 1),
-                points: 15
+                (point, numPoints) => Tuple.Create<double, Func<Person, bool>>(pointDelta * point, p => p.Ranking(0) == nCandidates - 1),
+                points: 15,
+                numberPerPoint: nElections
                 );
 
             for (int i = 0; i < results.Length; i++)
             {
                 var r = results[i].Result;
-                Console.WriteLine("Election with candidate 0 having {0}% of the vote ({1} flips):", 10.0 * i, r.flips);
+                Console.WriteLine("Election with candidate 0 having {0}% of the vote ({1} flips):", pointDelta * 100.0 * i, r.flips);
                 for (int icand = 0; icand < flips.candidateResults.Length; icand++)
                 {
                     Console.Write("  Candidate {0}: ", icand);
