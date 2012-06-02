@@ -193,6 +193,9 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.ClearPeopleConstrains">
+            <summary>Sets the shim of Election.ClearPeopleConstrains()</summary>
+        </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.Constructor">
             <summary>Sets the shim of Election.Election()</summary>
         </member>
@@ -249,6 +252,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.AddStepIElectionStep">
             <summary>Sets the shim of Election.AddStep(IElectionStep step)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.ClearPeopleConstrains">
+            <summary>Sets the shim of Election.ClearPeopleConstrains()</summary>
         </member>
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances.GeneratePeople">
             <summary>Sets the shim of Election.GeneratePeople()</summary>
@@ -375,6 +381,36 @@
         </member>
         <member name="T:ElectionDriver.Fakes.ShimElectionFailureException.AllInstances">
             <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElectionTrend">
+            <summary>Shim type of ElectionDriver.ElectionTrend</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionTrend.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionTrend.#ctor(ElectionDriver.ElectionTrend)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionTrend.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElectionTrend.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionTrend.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionTrend.ConstructorElection">
+            <summary>Sets the shim of ElectionTrend.ElectionTrend(Election e)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionTrend.RunTrendFuncOfInt32Int32TupleOfDoubleFuncOfPersonBooleanInt32Int32">
+            <summary>Sets the shim of ElectionTrend.RunTrend(Func`3&lt;Int32,Int32,Tuple`2&lt;Double,Func`2&lt;Person,Boolean&gt;&gt;&gt; constraintGenerator, Int32 numberPerPoint, Int32 points)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElectionTrend.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElectionTrend.AllInstances.RunTrendFuncOfInt32Int32TupleOfDoubleFuncOfPersonBooleanInt32Int32">
+            <summary>Sets the shim of ElectionTrend.RunTrend(Func`3&lt;Int32,Int32,Tuple`2&lt;Double,Func`2&lt;Person,Boolean&gt;&gt;&gt; constraintGenerator, Int32 numberPerPoint, Int32 points)</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.ShimPerson">
             <summary>Shim type of ElectionDriver.Person</summary>
@@ -606,6 +642,21 @@
         </member>
         <member name="P:ElectionDriver.Fakes.StubElectionFailureException.StackTrace">
             <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubElectionTrend">
+            <summary>Stub type of ElectionDriver.ElectionTrend</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionTrend.#ctor(ElectionDriver.Election)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubElectionTrend.InitializeStub">
+            <summary>Initializes a new instance of type StubElectionTrend</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionTrend.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionTrend.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubIElectionStep">
             <summary>Stub type of ElectionDriver.IElectionStep</summary>

@@ -214,6 +214,14 @@ namespace ElectionDriver
         }
 
         /// <summary>
+        /// Clear all people constraints
+        /// </summary>
+        public void ClearPeopleConstrains()
+        {
+            _constraints.Clear();
+        }
+
+        /// <summary>
         /// The list of steps that we go through for an election.
         /// </summary>
         List<IElectionStep> _steps = new List<IElectionStep>();
