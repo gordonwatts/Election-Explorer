@@ -150,13 +150,19 @@ namespace ElectionDriver
             _steps.Add(step);
         }
 
-        public class EnsembleResults
+        public class ElectionResults
         {
             /// <summary>
             /// Number of times the winner (first place candidate) changed when we varied the
             /// people who were in the election.
             /// </summary>
             public int flips;
+
+            /// <summary>
+            /// The order of the candidates - the first one is the first candidate, etc. Gives the
+            /// ranking of the candidates.
+            /// </summary>
+            public int[] candidateOrdering;
         }
 
         /// <summary>
@@ -165,7 +171,7 @@ namespace ElectionDriver
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public async Task<EnsembleResults> RunElectionEnsemble(uint numberOfElections)
+        public async Task<ElectionResults> RunElectionEnsemble(uint numberOfElections)
         {
             if (numberOfElections == 0)
                 throw new ArgumentException("Asked to run an ensemble of zero elections!");
@@ -175,7 +181,7 @@ namespace ElectionDriver
 
             var flipsPerResult = await Task.WhenAll(allResults.ToArray());
 
-            var r = new EnsembleResults();
+            var r = new ElectionResults();
             r.flips = flipsPerResult.Select(c => c > 0 ? 1 : 0).Sum();
             return r;
         }
