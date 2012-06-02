@@ -127,7 +127,7 @@ namespace ElectionDriver
             var r = new ElectionResults();
             r.flips = flips;
             r.candidateOrdering = (from rs in result
-                                   orderby rs.ranking
+                                   orderby rs.ranking descending
                                    select rs.candidate).ToArray();
 
             return r;

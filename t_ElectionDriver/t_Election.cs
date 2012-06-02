@@ -260,7 +260,33 @@ namespace t_ElectionDriver
             Assert.AreEqual(0, result.candidateResults[1].resultTimes[0], "# of times candidate one was first");
             Assert.AreEqual(0, result.candidateResults[1].resultTimes[1], "# of times candidate one was second");
         }
-        
+
+        [TestMethod]
+        public async Task RunElection20TimesWithDifferentResults()
+        {
+            var e = new Election() { NumberOfCandidates = 3, NumberOfPeople = 20 };
+
+            var step1 = new ElectionDriver.Fakes.StubIElectionStep();
+            step1.RunStepPersonArrayCandiateRankingArrayArray = (people, prev) =>
+            {
+                return new CandiateRanking[] { new CandiateRanking(0, 10), new CandiateRanking(1, 15) };
+            };
+            e.AddStep(step1);
+
+            var result = await e.RunElectionEnsemble(20);
+            Assert.AreEqual(0, result.flips, "Expected # of flips");
+            Assert.AreEqual(3, result.candidateResults.Length, "# of different winners");
+            Assert.AreEqual(0, result.candidateResults[0].resultTimes[0], "# of times candidate zero won");
+            Assert.AreEqual(20, result.candidateResults[0].resultTimes[1], "# of times candidate zero was second");
+            Assert.AreEqual(0, result.candidateResults[0].resultTimes[2], "# of times candidate zero was second");
+            Assert.AreEqual(20, result.candidateResults[1].resultTimes[0], "# of times candidate one was first");
+            Assert.AreEqual(0, result.candidateResults[1].resultTimes[1], "# of times candidate one was second");
+            Assert.AreEqual(0, result.candidateResults[1].resultTimes[2], "# of times candidate one was second");
+            Assert.AreEqual(0, result.candidateResults[2].resultTimes[0], "# of times candidate one was first");
+            Assert.AreEqual(0, result.candidateResults[2].resultTimes[1], "# of times candidate one was second");
+            Assert.AreEqual(0, result.candidateResults[2].resultTimes[2], "# of times candidate one was second");
+        }
+
         [TestMethod]
         public async void RunSimpleElectionSetWithNoFlip()
         {
