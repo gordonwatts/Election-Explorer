@@ -262,6 +262,30 @@
         <member name="P:ElectionDriver.Fakes.ShimElection.AllInstances._RunElectionEnsembleb__1eInt32">
             <summary>Sets the shim of Election.&lt;RunElectionEnsemble&gt;b__1e(Int32 i_election)</summary>
         </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults">
+            <summary>Shim type of ElectionDriver.Election+EnsembleResults</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.#ctor(ElectionDriver.Election.EnsembleResults)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.Constructor">
+            <summary>Sets the shim of EnsembleResults.EnsembleResults()</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimElection.ShimEnsembleResults.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimElectionFailureException">
             <summary>Shim type of ElectionDriver.ElectionFailureException</summary>
         </member>

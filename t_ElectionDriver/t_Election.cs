@@ -250,8 +250,8 @@ namespace t_ElectionDriver
             };
             e.AddStep(step1);
 
-            var flips = await e.RunElectionEnsemble(20);
-            Assert.AreEqual(20, flips, "Expected # of flips");
+            var result = await e.RunElectionEnsemble(20);
+            Assert.AreEqual(20, result.flips, "Expected # of flips");
         }
         
         [TestMethod]

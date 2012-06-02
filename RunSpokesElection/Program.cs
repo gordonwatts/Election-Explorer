@@ -33,7 +33,7 @@ namespace RunSpokesElection
             e.AddStep(new ESOnlyBestCounts());
 
             var flips = e.RunElectionEnsemble(nElections).Result;
-            Console.WriteLine("Saw {0} flips in {1} elections.", flips, nElections);
+            Console.WriteLine("Saw {0} flips in {1} elections.", flips.flips, nElections);
 
         }
 
