@@ -520,6 +520,9 @@
         <member name="P:ElectionDriver.Fakes.StubESKeepBestN.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.StubESKeepBestN.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.StubESKeepThoseBetterThan">
             <summary>Stub type of ElectionDriver.ESKeepThoseBetterThan</summary>
         </member>
@@ -534,6 +537,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.StubESKeepThoseBetterThan.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESKeepThoseBetterThan.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubESOnlyBestCounts">
             <summary>Stub type of ElectionDriver.ESOnlyBestCounts</summary>
@@ -550,6 +556,9 @@
         <member name="P:ElectionDriver.Fakes.StubESOnlyBestCounts.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.StubESOnlyBestCounts.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.StubElection">
             <summary>Stub type of ElectionDriver.Election</summary>
         </member>
@@ -564,6 +573,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.StubElection.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElection.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubElectionFailureException">
             <summary>Stub type of ElectionDriver.ElectionFailureException</summary>
@@ -634,6 +646,9 @@
         <member name="P:ElectionDriver.Fakes.StubElectionFailureException.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionFailureException.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
         <member name="P:ElectionDriver.Fakes.StubElectionFailureException.Message">
             <summary>Sets the stub of Exception.get_Message()</summary>
         </member>
@@ -657,6 +672,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.StubElectionTrend.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubElectionTrend.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubIElectionStep">
             <summary>Stub type of ElectionDriver.IElectionStep</summary>
@@ -690,6 +708,9 @@
         </member>
         <member name="P:ElectionDriver.Fakes.StubPerson.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubPerson.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
         </member>
     </members>
 </doc>

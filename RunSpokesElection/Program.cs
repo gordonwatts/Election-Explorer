@@ -53,7 +53,7 @@ namespace RunSpokesElection
             var results = eTrend.RunTrend(
                 (point, numPoints) => Tuple.Create<double, Func<Person, bool>>(pointDelta * point, p => p.Ranking(0) == nCandidates - 1),
                 points: 15,
-                numberPerPoint: nElections
+                numberPerPoint: (int) nElections
                 );
 
             for (int i = 0; i < results.Length; i++)
