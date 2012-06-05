@@ -43,6 +43,7 @@
     <Compile Include="Election.cs" />
     <Compile Include="ElectionFailureException.cs" />
     <Compile Include="ElectionTrend.cs" />
+    <Compile Include="ESBorda.cs" />
     <Compile Include="ESKeepBestN.cs" />
     <Compile Include="ESKeepThoseBetterThan.cs" />
     <Compile Include="ESOnlyBestCounts.cs" />

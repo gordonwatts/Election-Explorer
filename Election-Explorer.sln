@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 11
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectionDriver", "ElectionDriver\ElectionDriver.csproj", "{FEA95D38-A09A-4581-8E0D-01C908B0509D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C76A3BA8-98D4-40F9-8B91-CFDCC693A5F0}"
@@ -12,6 +12,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CmdElectionApps", "CmdElectionApps", "{2722B29E-A7A7-436A-A223-6EB30450A6C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunSpokesElection", "RunSpokesElection\RunSpokesElection.csproj", "{B541B852-ADD9-40F8-B539-E5DDF55D860C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74440967-02FD-4D91-A390-A1D2CBF853A0}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -22,6 +22,45 @@
         <member name="T:ElectionDriver.Fakes.ShimCandiateRanking.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
+        <member name="T:ElectionDriver.Fakes.ShimESBorda">
+            <summary>Shim type of ElectionDriver.ESBorda</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESBorda.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESBorda.#ctor(ElectionDriver.ESBorda)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESBorda.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESBorda.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.ShimESBorda.Bind(ElectionDriver.IElectionStep)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESBorda.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESBorda.Constructor">
+            <summary>Sets the shim of ESBorda.ESBorda()</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESBorda.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESBorda.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESBorda._RunStepb__2Person">
+            <summary>Sets the shim of ESBorda.&lt;RunStep&gt;b__2(Person p)</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESBorda._RunStepb__6IGroupingOfInt32Int32">
+            <summary>Sets the shim of ESBorda.&lt;RunStep&gt;b__6(IGrouping`2&lt;Int32,Int32&gt; candidateRankings)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.ShimESBorda.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.ShimESBorda.AllInstances.RunStepPersonArrayCandiateRankingArrayArray">
+            <summary>Sets the shim of ESBorda.RunStep(Person[] people, CandiateRanking[][] previousResults)</summary>
+        </member>
         <member name="T:ElectionDriver.Fakes.ShimESKeepBestN">
             <summary>Shim type of ElectionDriver.ESKeepBestN</summary>
         </member>
@@ -504,6 +543,24 @@
         </member>
         <member name="P:ElectionDriver.Fakes.ShimPerson.AllInstances._KeepCandidatesb__13Int32">
             <summary>Sets the shim of Person.&lt;KeepCandidates&gt;b__13(Int32 i)</summary>
+        </member>
+        <member name="T:ElectionDriver.Fakes.StubESBorda">
+            <summary>Stub type of ElectionDriver.ESBorda</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESBorda.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:ElectionDriver.Fakes.StubESBorda.InitializeStub">
+            <summary>Initializes a new instance of type StubESBorda</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESBorda.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESBorda.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ElectionDriver.Fakes.StubESBorda.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
         </member>
         <member name="T:ElectionDriver.Fakes.StubESKeepBestN">
             <summary>Stub type of ElectionDriver.ESKeepBestN</summary>
