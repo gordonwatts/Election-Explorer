@@ -15,8 +15,9 @@ namespace RunMajorityElection
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            uint nElections = 50;
-            uint nCandidates = 3;
+            uint nElections = 2000;
+            uint nCandidates = 4;
+            Console.WriteLine("Running the Majority election with {0} candidates {1} times.", nCandidates, nElections);
 
             var e = new Election()
             {

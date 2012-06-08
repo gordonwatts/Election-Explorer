@@ -11,8 +11,9 @@ namespace RunBordaElection
     {
         static void Main(string[] args)
         {
-            uint nElections = 1000;
+            uint nElections = 2000;
             uint nCandidates = 4;
+            Console.WriteLine("Running the Borda election with {0} candidates {1} times.", nCandidates, nElections);
 
             var e = new Election()
             {
