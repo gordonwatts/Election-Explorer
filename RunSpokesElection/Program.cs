@@ -16,7 +16,7 @@ namespace RunSpokesElection
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            uint nElections = 2000;
+            uint nElections = 4000;
             uint nCandidates = 4;
             Console.WriteLine("Running the Run-off Spokes election with {0} candidates {1} times.", nCandidates, nElections);
 

@@ -15,7 +15,7 @@ namespace RunMajorityElection
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            uint nElections = 2000;
+            uint nElections = 4000;
             uint nCandidates = 4;
             Console.WriteLine("Running the Majority election with {0} candidates {1} times.", nCandidates, nElections);
 
@@ -44,7 +44,8 @@ namespace RunMajorityElection
             var eTrend = new ElectionTrend(e);
             var results = eTrend.RunTrend(
                 (point, numPoints) => Tuple.Create<double, Func<Person, bool>>(0.1*point, p => p.Ranking(0) == nCandidates-1),
-                points: 10
+                points: 10,
+                numberPerPoint: (int) nElections
                 );
 
             for (int i = 0; i < results.Length; i++)
